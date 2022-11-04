@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:riderapp/firebase_options.dart';
+import 'package:riderapp/homescreen.dart';
 import 'package:riderapp/login.dart';
 import 'package:riderapp/provider/notifcationprovider.dart';
+import 'package:riderapp/theme/deftheme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,12 +35,15 @@ class Main extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: primaryColor,
+        secondaryHeaderColor: primary2Color,
+        primarySwatch: Colors.cyan,
       ),
-      home: const LoginScreen(),
+      home: auth.currentUser != null ? const HomeScreen() : const LoginScreen(),
     );
   }
 }

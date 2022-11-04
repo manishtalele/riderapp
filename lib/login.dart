@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:riderapp/homescreen.dart';
+import 'package:riderapp/provider/emailauth.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,6 +11,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool check = false;
+  String password = "", email = "";
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -41,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextFormField(
+                onChanged: (value) => setState(() => email = value),
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   icon: Icon(Icons.email_outlined),
@@ -57,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
+              onChanged: (value) => setState(() => password = value),
               decoration: const InputDecoration(
                 border: InputBorder.none,
                 icon: Icon(Icons.key),
@@ -88,21 +91,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(color: Color.fromARGB(255, 117, 183, 158))),
           ],
         ),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const HomeScreen())));
-            },
-            style: ElevatedButton.styleFrom(backgroundColor: primary3Color),
-            child: const Text(
-              "SIGN IN",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            )),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: ElevatedButton(
+              onPressed: () => EmailAuth().signInWithEmailAndPassword(
+                  context: context, password: password, emailAddress: email),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+              child: const Text(
+                "SIGN IN",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              )),
+        ),
         const Text(
           "Don't have an account? Sign Up",
           style: TextStyle(
@@ -111,9 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
             color: Colors.grey,
           ),
         ),
-        SizedBox(
-          height: width < 440 ? width / 4 : 100,
-        ),
+        const SizedBox(height: 40),
         Align(
           alignment: AlignmentDirectional.centerEnd,
           child: Image.asset(
