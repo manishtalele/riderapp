@@ -85,7 +85,45 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            const Text("Active Pickup’s", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),)
+            const Text("Active Pickup's", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
+            Card(
+              child:Column(
+                children: [
+                  Card(
+                    color: primary2Color,
+                    shape:RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children:const [
+                            Text("Happy Valley",
+                            style:TextStyle(
+                              color:Colors.white,
+                              fontSize: 16,
+                              fontWeight:FontWeight.w500,
+                              )
+                            ),
+                            Text("Order ID: #100070",
+                            style:TextStyle(
+                              fontSize: 16,
+                              fontWeight:FontWeight.w500
+                            )),
+                            ]
+                            ),
+                        Row(
+                          children:[
+                            Image.asset("assets/img1.png"),
+                            Image.asset("assets/img1.png")
+                          ]
+                        )
+                          ]
+                        )
+                  )
+                ],
+              )
+            )
           ],
         ),
       ),
