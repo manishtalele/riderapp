@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riderapp/provider/emailauth.dart';
+import 'package:riderapp/registration.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -108,12 +109,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               )),
         ),
-        const Text(
-          "Don't have an account? Sign Up",
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey,
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const RegisterScreen())
+                );
+          },
+          child: const Text(
+            "Don't have an account? Sign Up",
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              color: Colors.grey,
+            ),
           ),
         ),
         const SizedBox(height: 40),

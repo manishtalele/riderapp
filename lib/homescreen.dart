@@ -65,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Card(
+                  elevation: 3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
@@ -76,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
-                              color: primary3Color),
+                              color: primaryColor),
                         ),
                         const SizedBox(
                           height: 40,
@@ -112,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Column(
                   children: [
                     Card(
+                      elevation: 3,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
@@ -123,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
-                                  color: primary3Color),
+                                  color: primaryColor),
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(vertical: 5),
@@ -143,6 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Card(
+                      elevation: 3,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
@@ -154,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
-                                  color: primary3Color),
+                                  color: primaryColor),
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(vertical: 5),
@@ -177,45 +180,231 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            const Text("Active Pickup's", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                "Active Pickup's",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+            ),
             Card(
-              child:Column(
-                children: [
-                  Card(
-                    color: primary2Color,
-                    shape:RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children:const [
-                            Text("Happy Valley",
-                            style:TextStyle(
-                              color:Colors.white,
-                              fontSize: 16,
-                              fontWeight:FontWeight.w500,
-                              )
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: Card(
+                      color: primary2Color,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
+                        child: Column(children: [
+                          Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Text("Happy Valley,\nThane",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                                Text("Order ID: #100070",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500)),
+                              ]),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset("assets/img1.png"),
+                                    Image.asset("assets/img1.png"),
+                                    Image.asset("assets/img1.png"),
+                                  ],
+                                ),
+                                Image.asset("assets/gmaps.png")
+                              ]),
+                        ]),
+                      )),
+                )),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                "Upcoming pickup’s ",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+            ),
+            Card(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: Column(
+                    children: [
+                      Card(
+                          color: primary2Color,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Order ID: #100070",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          "11 Jan 2022 , 7 km",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color.fromRGBO(
+                                                  00, 00, 00, 0.61)),
+                                        ),
+                                        Text(
+                                          "  | Dal Roti",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                const Icon(
+                                  Icons.chevron_right_rounded,
+                                  size: 40,
+                                  color: Colors.white,
+                                )
+                              ],
                             ),
-                            Text("Order ID: #100070",
-                            style:TextStyle(
-                              fontSize: 16,
-                              fontWeight:FontWeight.w500
-                            )),
-                            ]
+                          )),
+                      Card(
+                          color: primary2Color,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Order ID: #100070",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          "11 Jan 2022 , 7 km",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color.fromRGBO(
+                                                  00, 00, 00, 0.61)),
+                                        ),
+                                        Text(
+                                          "  | Dal Roti",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                const Icon(
+                                  Icons.chevron_right_rounded,
+                                  size: 40,
+                                  color: Colors.white,
+                                )
+                              ],
                             ),
-                        Row(
-                          children:[
-                            Image.asset("assets/img1.png"),
-                            Image.asset("assets/img1.png")
-                          ]
-                        )
-                          ]
-                        )
-                  )
-                ],
-              )
-            )
+                          )),
+                      Card(
+                          color: primary2Color,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Order ID: #100070",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          "11 Jan 2022 , 7 km",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color.fromRGBO(
+                                                  00, 00, 00, 0.61)),
+                                        ),
+                                        Text(
+                                          "  | Dal Roti",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                const Icon(
+                                  Icons.chevron_right_rounded,
+                                  size: 40,
+                                  color: Colors.white,
+                                )
+                              ],
+                            ),
+                          )),
+                    ],
+                  ),
+                )),
           ],
         ),
       ),

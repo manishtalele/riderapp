@@ -7,6 +7,7 @@ import 'package:riderapp/firebase_options.dart';
 import 'package:riderapp/homescreen.dart';
 import 'package:riderapp/login.dart';
 import 'package:riderapp/provider/notifcationprovider.dart';
+import 'package:riderapp/splash.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 Future<void> main() async {
@@ -43,7 +44,7 @@ class Main extends StatelessWidget {
         secondaryHeaderColor: primary2Color,
         primarySwatch: Colors.cyan,
       ),
-      home: auth.currentUser != null ? const HomeScreen() : const LoginScreen(),
+      home: const Splash(),
     );
   }
 }
