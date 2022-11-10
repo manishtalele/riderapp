@@ -1,5 +1,10 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:riderapp/api/createuser.dart';
+import 'package:riderapp/data/userdata.dart';
+import 'package:riderapp/provider/datepicker.dart';
+import 'package:riderapp/provider/emailauth.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -11,15 +16,31 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   List items = ["Scooter", "Bike", "Tempo"];
-  String fullname = "",
-      contactno = "",
-      aadharno = "",
-      email = "",
-      vehicletype = "Scooter",
-      licenseno = "",
-      expirydate = "",
-      password = "",
-      confirmpass = "";
+  final TextEditingController _fullname = TextEditingController(),
+      _contactNo = TextEditingController(),
+      _licenseno = TextEditingController(),
+      _expirydate = TextEditingController(),
+      _email = TextEditingController(),
+      _password = TextEditingController(),
+      _confirmPass = TextEditingController();
+
+  bool showPassword = true, showConfirmPass = true;
+  String vehicletype = "Scooter";
+
+  setDetails() {
+    username = _fullname.text;
+    phoneNum = int.parse(_contactNo.text);
+    vehicleType = vehicletype;
+    drivingLicenseNo = _licenseno.text;
+    expiryDate = _expirydate.text;
+    email = _email.text;
+  }
+
+  @override
+  void initState() {
+    _expirydate.text = "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 60, 20, 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,9 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none),
                         ),
-                        onChanged: (value) => setState(() {
-                          fullname = value;
-                        }),
+                        controller: _fullname,
                       ),
                     ),
                     const Text(
@@ -89,6 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       elevation: 3,
                       child: TextField(
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
@@ -101,38 +121,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none),
                         ),
-                        onChanged: (value) => setState(() {
-                          contactno = value;
-                        }),
+                        controller: _contactNo,
                       ),
                     ),
-                    const Text(
-                      "Aadhaar no.",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(106, 140, 175, 1),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none),
-                        ),
-                        onChanged: (value) => setState(() {
-                          aadharno = value;
-                        }),
-                      ),
-                    ),
+                    // const Text(
+                    //   "Aadhaar no.",
+                    //   style:
+                    //       TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                    // ),
+                    // Card(
+                    //   shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(10)),
+                    //   elevation: 3,
+                    //   child: TextField(
+                    //     decoration: InputDecoration(
+                    //       fillColor: Colors.white,
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: const BorderSide(
+                    //           color: Color.fromRGBO(106, 140, 175, 1),
+                    //         ),
+                    //         borderRadius: BorderRadius.circular(10),
+                    //       ),
+                    //       border: OutlineInputBorder(
+                    //           borderRadius: BorderRadius.circular(10),
+                    //           borderSide: BorderSide.none),
+                    //     ),
+                    //     con
+                    //   ),
+                    // ),
                     const Text(
                       "Email ID",
                       style:
@@ -143,6 +159,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       elevation: 3,
                       child: TextField(
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
@@ -155,9 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none),
                         ),
-                        onChanged: (value) => setState(() {
-                          email = value;
-                        }),
+                        controller: _email,
                       ),
                     ),
                     const Text(
@@ -240,9 +255,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none),
                         ),
-                        onChanged: (value) => setState(() {
-                          licenseno = value;
-                        }),
+                        controller: _licenseno,
                       ),
                     ),
                     const Text(
@@ -252,12 +265,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     Card(
                       elevation: 3,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),                      
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
                       child: Row(
                         children: [
                           SizedBox(
-                            width: width-110,
+                            width: width - 110,
                             child: TextField(
+                              // keyboardType: TextInputType.datetime,
                               decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
@@ -270,9 +285,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide.none),
                               ),
-                              onChanged: (value) => setState(() {
-                                expirydate = value;
-                              }),
+                              controller: _expirydate,
+                              readOnly: true,
+                              onTap: () => DatePicker().getDate(
+                                context: context,
+                                setDate: (date) =>
+                                    setState(() => _expirydate.text = date),
+                              ),
                             ),
                           ),
                           const Icon(Icons.calendar_today_outlined)
@@ -306,8 +325,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Row(
                         children: [
                           SizedBox(
-                            width: width-110,
+                            width: width - 150,
                             child: TextField(
+                              obscureText: showPassword,
                               decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
@@ -320,12 +340,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide.none),
                               ),
-                              onChanged: (value) => setState(() {
-                                password = value;
-                              }),
+                              controller: _password,
                             ),
                           ),
-                          const Icon(Icons.visibility_off_outlined)
+                          const Spacer(),
+                          IconButton(
+                            icon: const Icon(Icons.visibility_off_outlined),
+                            onPressed: () =>
+                                setState(() => showPassword = !showPassword),
+                          )
                         ],
                       ),
                     ),
@@ -341,8 +364,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Row(
                         children: [
                           SizedBox(
-                            width: width-110,
+                            width: width - 150,
                             child: TextField(
+                              obscureText: showConfirmPass,
                               decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
@@ -355,12 +379,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide.none),
                               ),
-                              onChanged: (value) => setState(() {
-                                confirmpass = value;
-                              }),
+                              controller: _confirmPass,
                             ),
                           ),
-                          const Icon(Icons.visibility_off_outlined)
+                          const Spacer(),
+                          IconButton(
+                            icon: const Icon(Icons.visibility_off_outlined),
+                            onPressed: () => setState(
+                                () => showConfirmPass = !showConfirmPass),
+                          )
                         ],
                       ),
                     ),
@@ -377,11 +404,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ))),
-                    onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const HomeScreen()));
+                    onPressed: () async {
+                      try {
+                        if (_password.text == _confirmPass.text) {
+                          await setDetails();
+                          await EmailAuth().createUserWithEmailAndPassword(
+                              emailAddress: _email.text,
+                              password: _password.text);
+                          await UserDetails().createUser(context: context);
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "Please Enter Proper Password",
+                              toastLength: Toast.LENGTH_LONG,
+                              fontSize: 20,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              textColor: Colors.white);
+                        }
+                      } catch (e) {
+                        Fluttertoast.showToast(
+                            msg: "Something Went Wrong",
+                            toastLength: Toast.LENGTH_LONG,
+                            fontSize: 20,
+                            backgroundColor: Theme.of(context).primaryColor,
+                            textColor: Colors.white);
+                        print(e);
+                      }
                     },
                     child: const Padding(
                       padding:

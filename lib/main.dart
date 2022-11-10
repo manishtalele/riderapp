@@ -4,8 +4,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:riderapp/firebase_options.dart';
-import 'package:riderapp/homescreen.dart';
-import 'package:riderapp/login.dart';
 import 'package:riderapp/provider/notifcationprovider.dart';
 import 'package:riderapp/splash.dart';
 import 'package:riderapp/theme/deftheme.dart';
