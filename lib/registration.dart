@@ -1,6 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:riderapp/homescreen.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -11,12 +10,12 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  List items = ["Male", "Female", "Other"];
+  List items = ["Scooter", "Bike", "Tempo"];
   String fullname = "",
       contactno = "",
       aadharno = "",
       email = "",
-      vehicletype = "Male",
+      vehicletype = "Scooter",
       licenseno = "",
       expirydate = "",
       password = "",
@@ -379,10 +378,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ))),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const HomeScreen()));
                     },
                     child: const Padding(
                       padding:

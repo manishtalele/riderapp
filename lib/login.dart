@@ -99,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   context: context, password: password, emailAddress: email),
               style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
+                  foregroundColor: Colors.white,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
               child: const Text(
@@ -126,13 +127,13 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
-        const SizedBox(height: 40),
-        Align(
-          alignment: AlignmentDirectional.centerEnd,
-          child: Image.asset(
-            "assets/login_image.png",
-          ),
-        ),
+        // const SizedBox(height: 40),
+        // Align(
+        //   alignment: AlignmentDirectional.centerEnd,
+        //   child: Image.asset(
+        //     "assets/login_image.png",
+        //   ),
+        // ),
       ]),
     ));
   }

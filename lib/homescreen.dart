@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:riderapp/orderinfo.dart';
 import 'package:riderapp/provider/emailauth.dart';
 import 'package:riderapp/provider/notifcationprovider.dart';
 import 'package:riderapp/theme/deftheme.dart';
@@ -252,56 +253,68 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(6),
                   child: Column(
                     children: [
-                      Card(
-                          color: primary2Color,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "Order ID: #100070",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Text(
-                                          "11 Jan 2022 , 7 km",
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color.fromRGBO(
-                                                  00, 00, 00, 0.61)),
-                                        ),
-                                        Text(
-                                          "  | Dal Roti",
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const Icon(
-                                  Icons.chevron_right_rounded,
-                                  size: 40,
-                                  color: Colors.white,
-                                )
-                              ],
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const OrderInfoScreen()
+                            )
+                          );
+                        },
+                        child: Card(
+                            color: primary2Color,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          )),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        "Order ID: #100070",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Row(
+                                        children: const [
+                                          Text(
+                                            "11 Jan 2022 , 7 km",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color.fromRGBO(
+                                                    00, 00, 00, 0.61)),
+                                          ),
+                                          Text(
+                                            "  | Dal Roti",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const Icon(
+                                    Icons.chevron_right_rounded,
+                                    size: 40,
+                                    color: Colors.white,
+                                  )
+                                ],
+                              ),
+                            )),
+                      ),
                       Card(
                           color: primary2Color,
                           shape: RoundedRectangleBorder(
