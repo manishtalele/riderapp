@@ -408,10 +408,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       try {
                         if (_password.text == _confirmPass.text) {
                           await setDetails();
-                          await EmailAuth().createUserWithEmailAndPassword(
-                              emailAddress: _email.text,
-                              password: _password.text);
-                          await UserDetails().createUser(context: context);
+                          await EmailAuth()
+                              .createUserWithEmailAndPassword(
+                                  emailAddress: _email.text,
+                                  password: _password.text)
+                              .then((value) async => await UserDetails()
+                                  .createUser(context: context));
                         } else {
                           Fluttertoast.showToast(
                               msg: "Please Enter Proper Password",

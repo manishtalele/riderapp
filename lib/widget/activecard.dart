@@ -59,16 +59,21 @@ class _ActiveCardState extends State<ActiveCard> {
               : Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
-                        height: 120,
-                        child: Image.asset(
-                          "assets/img1.png",
-                          fit: BoxFit.fill,
+                    Padding(
+                        padding: const EdgeInsetsDirectional.all(10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.network(
+                            orderDetails.images![0],
+                            fit: BoxFit.fill,
+                            height: 120,
+                          ),
                         )),
                     Column(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Order ID:${widget.orderid}",
+                        Text("Order ID:\n${widget.orderid}",
                             style: const TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w500)),
                         const SizedBox(
@@ -80,9 +85,6 @@ class _ActiveCardState extends State<ActiveCard> {
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             )),
-                        const SizedBox(
-                          height: 20,
-                        ),
                         ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -91,11 +93,8 @@ class _ActiveCardState extends State<ActiveCard> {
                                       builder: (context) =>
                                           const ActiveDonationPage()));
                             },
-                            child: const Text('Active'))
+                            child: const Text('Active')),
                       ],
-                    ),
-                    const SizedBox(
-                      height: 20,
                     ),
                   ],
                 ),
