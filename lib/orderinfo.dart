@@ -180,6 +180,7 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
           padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
           child: ElevatedButton(
               onPressed: () async {
+                
                 bool check = await FirebaseFirestore.instance
                     .collection("Rider")
                     .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -187,6 +188,7 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
                     .then((value) => value.data()!["Active"] == "");
 
                 if (check) {
+                  
                   await FirebaseFirestore.instance
                       .collection("Rider")
                       .doc(FirebaseAuth.instance.currentUser!.uid)

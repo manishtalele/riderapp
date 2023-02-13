@@ -1,6 +1,7 @@
 class PendingDonationModel {
   int? level;
   int? sizeofgood;
+  int? serves;
   String? status;
   String? typeOfDonation;
   String? address;
@@ -11,6 +12,7 @@ class PendingDonationModel {
   String? name;
   String? userid;
   PendingDonationModel(
+      this.serves,
       this.address,
       this.datetime,
       this.donationid,
@@ -25,16 +27,17 @@ class PendingDonationModel {
 
   PendingDonationModel.from(data)
       : level = data['Level'],
-        sizeofgood = data['sizeofgood'],
-        status = data['status'],
-        typeOfDonation = data['typeOfDonation'],
+        serves = data['Serves'],
+        sizeofgood = data['SizeOfGood'],
+        status = data['Status'],
+        typeOfDonation = data['TypeOfDonation'],
         address = data['address'],
         donationid = data['donationId'],
         foodname = data['foodName'],
         images = data['images'],
         datetime = data['Time'].toDate(),
         name = data['name'],
-        userid = data['userid'];
+        userid = data['userId'];
 
   Map<String, dynamic> toMap() {
     return {

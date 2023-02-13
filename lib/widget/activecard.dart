@@ -39,7 +39,6 @@ class _ActiveCardState extends State<ActiveCard> {
     if (widget.orderid != "") {
       callApi();
     }
-
     super.initState();
   }
 
@@ -91,7 +90,7 @@ class _ActiveCardState extends State<ActiveCard> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const ActiveDonationPage()));
+                                           ActiveDonationPage(orderDetails: orderDetails,)));
                             },
                             child: const Text('Active')),
                       ],
