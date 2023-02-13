@@ -15,6 +15,7 @@ class UserDetails {
       "phoneNo": phoneNum,
       "email": email,
       "vehicleType": vehicleType,
+      "Active": "",
       "token": fcmToken,
     });
     await FirebaseFirestore.instance

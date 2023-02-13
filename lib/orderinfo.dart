@@ -1,11 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:riderapp/homescreen.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 class OrderInfoScreen extends StatefulWidget {
   final PendingDonationModel upcomingdonation;
-  const OrderInfoScreen({super.key, required this.upcomingdonation});
+  final Function stateUpdate;
+  const OrderInfoScreen(
+      {super.key, required this.upcomingdonation, required this.stateUpdate});
 
   @override
   State<OrderInfoScreen> createState() => _OrderInfoScreenState();
@@ -13,7 +18,6 @@ class OrderInfoScreen extends StatefulWidget {
 
 class _OrderInfoScreenState extends State<OrderInfoScreen> {
   int current = 0;
-  List imageData = [];
 
   @override
   Widget build(BuildContext context) {
@@ -48,24 +52,28 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
                 aspectRatio: 1 / 1,
                 viewportFraction: 1,
                 initialPage: 0,
-                autoPlay: true,
+                autoPlay:
+                    widget.upcomingdonation.images!.length <= 1 ? false : true,
                 autoPlayInterval: const Duration(seconds: 12),
                 autoPlayAnimationDuration: const Duration(milliseconds: 800),
                 autoPlayCurve: Curves.easeInOut,
                 enlargeCenterPage: true,
+                scrollPhysics: widget.upcomingdonation.images!.length <= 1
+                    ? const NeverScrollableScrollPhysics()
+                    : const ScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 onPageChanged: (index, reason) {
                   setState(() {
                     current = index;
                   });
                 }),
-            items: imageData.map((i) {
+            items: widget.upcomingdonation.images?.map((i) {
               return Padding(
                 padding: const EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.network(
-                    widget.upcomingdonation.images.toString(),
+                    i.toString(),
                     // height: 160,
                     width: width,
                     fit: BoxFit.fitWidth,
@@ -171,7 +179,29 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
       bottomNavigationBar: Padding(
           padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
           child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                bool check = await FirebaseFirestore.instance
+                    .collection("Rider")
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .get()
+                    .then((value) => value.data()!["Active"] == "");
+
+                if (check) {
+                  await FirebaseFirestore.instance
+                      .collection("Rider")
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .update({"Active": widget.upcomingdonation.donationid});
+                  pendingDonation.value = List.from(pendingDonation.value)
+                    ..removeWhere((element) =>
+                        element["donationid"] ==
+                        widget.upcomingdonation.donationid);
+                  await FirebaseFirestore.instance
+                      .collection("PendingDonation")
+                      .doc(widget.upcomingdonation.donationid)
+                      .update({"Status": "Active"}).whenComplete(
+                          () => Navigator.pop(context));
+                }
+              },
               style: ElevatedButton.styleFrom(
                   elevation: 0,
                   shape: RoundedRectangleBorder(

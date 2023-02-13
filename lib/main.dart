@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:riderapp/api/getuserdetails_api.dart';
 import 'package:riderapp/firebase_options.dart';
+import 'package:riderapp/provider/emailauth.dart';
 import 'package:riderapp/provider/notifcationprovider.dart';
 import 'package:riderapp/splash.dart';
 import 'package:riderapp/theme/deftheme.dart';
@@ -27,8 +30,22 @@ Future<void> main() async {
   runApp(const Main());
 }
 
-class Main extends StatelessWidget {
+class Main extends StatefulWidget {
   const Main({super.key});
+
+  @override
+  State<Main> createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
+  @override
+  void initState() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      getUserDeatilsApi()
+          .catchError((onError) => EmailAuth().logout(context: context));
+    }
+    super.initState();
+  }
 
   // This widget is the root of your application.
   @override

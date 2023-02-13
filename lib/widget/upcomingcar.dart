@@ -4,25 +4,23 @@ import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/theme/deftheme.dart';
 import 'package:riderapp/orderinfo.dart';
 
-class UpcomingCard extends StatefulWidget {
+class UpcomingCard extends StatelessWidget {
   final PendingDonationModel upcomingdonation;
-  const UpcomingCard({super.key, required this.upcomingdonation});
-
-  @override
-  State<UpcomingCard> createState() => _UpcomingCardState();
-}
-
-class _UpcomingCardState extends State<UpcomingCard> {
-  String formmatingdate = DateFormat.yMMMMd().format(DateTime.now());
+  final Function stateUpdate;
+  const UpcomingCard(
+      {super.key, required this.upcomingdonation, required this.stateUpdate});
 
   @override
   Widget build(BuildContext context) {
+    String formmatingdate = DateFormat.yMMMMd().format(DateTime.now());
+
     return InkWell(
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => OrderInfoScreen(
-                    upcomingdonation: widget.upcomingdonation,
+                    upcomingdonation: upcomingdonation,
+                    stateUpdate: stateUpdate,
                   ))),
       child: Card(
           color: primary2Color,
@@ -38,7 +36,7 @@ class _UpcomingCardState extends State<UpcomingCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Order ID:${widget.upcomingdonation.donationid}",
+                      "Order ID: ${upcomingdonation.donationid}",
                       style: const TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w500),
                     ),
@@ -55,7 +53,7 @@ class _UpcomingCardState extends State<UpcomingCard> {
                               color: Color.fromRGBO(00, 00, 00, 0.61)),
                         ),
                         Text(
-                          widget.upcomingdonation.address.toString(),
+                          upcomingdonation.address.toString(),
                           style: const TextStyle(
                               fontSize: 12, fontWeight: FontWeight.w400),
                         ),

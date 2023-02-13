@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:riderapp/data/userdata.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
@@ -20,14 +20,19 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
-getFCM() async {
-  // ignore: unused_local_variable
-  String fcmToken = (await FirebaseMessaging.instance.getToken())!;
-  FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
-    String uid = userUid;
-    FirebaseFirestore.instance
+Future getFCM() async {
+  String uid = FirebaseAuth.instance.currentUser!.uid;
+  // Get the token each time the application loads
+  String? token = await FirebaseMessaging.instance.getToken();
+  Future saveTokenToDatabase(String fcmToken) async {
+    await FirebaseFirestore.instance
         .collection("Rider")
         .doc(uid)
         .update({"token": fcmToken});
-  }).onError((err) {});
+  }
+
+  // Save the initial token to the database
+  await saveTokenToDatabase(token!);
+  // Any time the token refreshes, store this in the database too.
+  FirebaseMessaging.instance.onTokenRefresh.listen(saveTokenToDatabase);
 }
