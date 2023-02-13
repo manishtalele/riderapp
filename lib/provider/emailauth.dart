@@ -39,6 +39,11 @@ class EmailAuth {
       required BuildContext context}) async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: emailAddress, password: password)
+        .then((value) =>
+            value.user ??
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                (route) => false))
         .catchError((e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -46,11 +51,7 @@ class EmailAuth {
         print('Wrong password provided for that user.');
       }
       return e;
-    }).then((value) =>
-            value.user ??
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-                (route) => false));
+    });
   }
 
   logout({required BuildContext context}) {
