@@ -19,7 +19,11 @@ class _UpcomingCardState extends State<UpcomingCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => OrderInfoScreen(upcomingdonation: widget.upcomingdonation,))),
+          context,
+          MaterialPageRoute(
+              builder: (context) => OrderInfoScreen(
+                    upcomingdonation: widget.upcomingdonation,
+                  ))),
       child: Card(
           color: primary2Color,
           shape: RoundedRectangleBorder(
@@ -35,8 +39,8 @@ class _UpcomingCardState extends State<UpcomingCard> {
                   children: [
                     Text(
                       "Order ID:${widget.upcomingdonation.donationid}",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                     const SizedBox(
                       height: 8,
@@ -45,14 +49,14 @@ class _UpcomingCardState extends State<UpcomingCard> {
                       children: [
                         Text(
                           formmatingdate,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
                               color: Color.fromRGBO(00, 00, 00, 0.61)),
                         ),
                         Text(
                           widget.upcomingdonation.address.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 12, fontWeight: FontWeight.w400),
                         ),
                       ],

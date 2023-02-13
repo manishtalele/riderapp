@@ -1,7 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
@@ -17,13 +15,6 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
   int current = 0;
   List imageData = [];
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   imageData.add(widget.upcomingdonation.images);
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -38,7 +29,7 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
             },
             icon: const Icon(Icons.arrow_back_ios)),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Pickup Details',
           style: TextStyle(
               color: Color(
@@ -83,7 +74,7 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
               );
             }).toList(),
           ),
-          Text(
+          const Text(
             "Pickup ID",
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -91,7 +82,7 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
               fontWeight: FontWeight.w400,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(
@@ -103,16 +94,18 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
               fontWeight: FontWeight.w700,
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Text(
+                const Text(
                   'Item name:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
@@ -125,18 +118,18 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Text(
+                const Text(
                   'Name:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
@@ -149,18 +142,18 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Text(
+                const Text(
                   'Address:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(

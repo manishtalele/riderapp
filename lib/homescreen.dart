@@ -18,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List activedonation = [];
-  @override
+
   activdonation() async {
     await FirebaseFirestore.instance
         .collection('PendingDonation')
@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print(activedonation);
   }
 
+  @override
   void initState() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
@@ -200,21 +201,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            Text(
+            const Text(
               "Active Pickup's",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
             ListView.builder(
                 shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: activedonation.length,
                 itemBuilder: (context, index) {
-                  return  ActiveCard(
+                  return ActiveCard(
                     orderid: activedonation[index]['donationId'],
                     name: activedonation[index]['name'],
                     location: activedonation[index]['address'],
                     activdonation: activedonation,
-
                   );
                 }),
             // Padding(
@@ -280,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       .map((doc) => PendingDonationModel.fromSnapshot(doc)));
                   return ListView.builder(
                       shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemCount: pendingdonation.length,
                       itemBuilder: (context, index) {
                         return UpcomingCard(

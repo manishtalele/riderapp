@@ -7,6 +7,6 @@ Color secondaryColor = const Color.fromRGBO(106, 140, 175, 0.25);
 Color headerBg = Colors.white;
 Color backgroundColors = Colors.white;
 Color cardBg = const Color.fromRGBO(243, 139, 117, 0.6);
-Color primary4Color= Color(
-                0xff6a8caf,
-              );
+Color primary4Color = const Color(
+  0xff6a8caf,
+);
