@@ -44,59 +44,73 @@ class _ActiveCardState extends State<ActiveCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        color: primary2Color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: loader
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                        padding: const EdgeInsetsDirectional.all(10),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.network(
-                            orderDetails.images![0],
-                            fit: BoxFit.fill,
-                            height: 120,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ActiveDonationPage(
+                      orderDetails: orderDetails,
+                    )));
+      },
+      child: Card(
+          color: primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: loader
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Order ID:\n${widget.orderid}",
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white)),
+                          const SizedBox(
+                            height: 10,
                           ),
-                        )),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Order ID:\n${widget.orderid}",
-                            style: const TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.w500)),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text("${orderDetails.name}\n${orderDetails.address}",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            )),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                           ActiveDonationPage(orderDetails: orderDetails,)));
-                            },
-                            child: const Text('Active')),
-                      ],
-                    ),
-                  ],
-                ),
-        ));
+                          Text("${orderDetails.name}\n${orderDetails.address}",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              )),
+                          // const Spacer(),
+                          Center(
+                            child: Container(
+                                padding: const EdgeInsets.all(10),
+                                margin: const EdgeInsets.only(top: 20),
+                                decoration: BoxDecoration(
+                                    color: primary2Color,
+                                    borderRadius: BorderRadius.circular(6)),
+                                child: const Text('Active')),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Padding(
+                          padding: const EdgeInsetsDirectional.all(10),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.network(
+                              orderDetails.images![0],
+                              fit: BoxFit.fill,
+                              height: 120,
+                            ),
+                          )),
+                    ],
+                  ),
+          )),
+    );
   }
 }

@@ -18,14 +18,15 @@ class _SplashState extends State<Splash> {
     FirebaseAuth auth = FirebaseAuth.instance;
     double width = MediaQuery.of(context).size.width;
     return AnimatedSplashScreen(
-        duration: 1500,
-        splash: SizedBox(
+      duration: 1500,
+      splash: SizedBox(
           width: width / 2,
           height: width / 2,
-          child: Image.asset("assets/rider_logo.png")
-        ),
-        splashTransition: SplashTransition.fadeTransition,
-        pageTransitionType: PageTransitionType.fade,
-        nextScreen: auth.currentUser != null ? const HomeScreen() : const LoginScreen(),);
+          child: Image.asset("assets/rider_logo.png")),
+      splashTransition: SplashTransition.fadeTransition,
+      pageTransitionType: PageTransitionType.fade,
+      nextScreen:
+          auth.currentUser != null ? const HomeScreen() : const LoginScreen(),
+    );
   }
 }
