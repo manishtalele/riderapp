@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riderapp/api/getdonationdata.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/provider/emailauth.dart';
+import 'package:riderapp/theme/deftheme.dart';
 import 'package:riderapp/widget/activecard.dart';
+import 'package:riderapp/screens/myaccount.dart';
 import 'package:riderapp/widget/upcomingcar.dart';
 
 ValueNotifier<List> pendingDonation = ValueNotifier<List>([]);
@@ -64,11 +67,20 @@ class _HomeScreenState extends State<HomeScreen> {
             "assets/rider_logo.png",
             height: 60,
           ),
-          actions: const [
+          actions:  [
             Icon(
               Icons.notifications_none_outlined,
-              size: 25,
-            )
+              color: primaryColor,
+              size: 35,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 0, 22,0),
+              child: InkWell(
+                onTap:() {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MyAccount()));
+                },
+                child: SvgPicture.asset("assets/profile.svg")),
+            ),
           ],
         ),
         backgroundColor: Colors.white,
@@ -78,125 +90,54 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Card(
-              //       elevation: 3,
-              //       shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(10)),
-              //       child: Padding(
-              //         padding: const EdgeInsets.all(15),
-              //         child: Column(
-              //           children: [
-              //             Text(
-              //               "Todays",
-              //               style: TextStyle(
-              //                   fontSize: 18,
-              //                   fontWeight: FontWeight.w500,
-              //                   color: primaryColor),
-              //             ),
-              //             const SizedBox(
-              //               height: 40,
-              //             ),
-              //             const Text(
-              //               "Daily Target :",
-              //               style: TextStyle(
-              //                   fontSize: 18, fontWeight: FontWeight.w500),
-              //             ),
-              //             const SizedBox(
-              //               height: 16,
-              //             ),
-              //             const Text(
-              //               "Delivered      :",
-              //               style: TextStyle(
-              //                   fontSize: 18, fontWeight: FontWeight.w500),
-              //             ),
-              //             const SizedBox(
-              //               height: 16,
-              //             ),
-              //             const Text(
-              //               "Earning         :",
-              //               style: TextStyle(
-              //                   fontSize: 18, fontWeight: FontWeight.w500),
-              //             ),
-              //             const SizedBox(
-              //               height: 16,
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //     Column(
-              //       children: [
-              //         Card(
-              //           elevation: 3,
-              //           shape: RoundedRectangleBorder(
-              //               borderRadius: BorderRadius.circular(10)),
-              //           child: Padding(
-              //             padding: const EdgeInsets.all(15),
-              //             child: Column(
-              //               children: [
-              //                 Text(
-              //                   "Weekly",
-              //                   style: TextStyle(
-              //                       fontSize: 18,
-              //                       fontWeight: FontWeight.w500,
-              //                       color: primaryColor),
-              //                 ),
-              //                 const Padding(
-              //                   padding: EdgeInsets.symmetric(vertical: 5),
-              //                   child: Text(
-              //                     "Delivered      :",
-              //                     style: TextStyle(
-              //                         fontSize: 18, fontWeight: FontWeight.w500),
-              //                   ),
-              //                 ),
-              //                 const Text(
-              //                   "Earning         :",
-              //                   style: TextStyle(
-              //                       fontSize: 18, fontWeight: FontWeight.w500),
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //         ),
-              //         Card(
-              //           elevation: 3,
-              //           shape: RoundedRectangleBorder(
-              //               borderRadius: BorderRadius.circular(10)),
-              //           child: Padding(
-              //             padding: const EdgeInsets.all(15),
-              //             child: Column(
-              //               children: [
-              //                 Text(
-              //                   "Monthly",
-              //                   style: TextStyle(
-              //                       fontSize: 18,
-              //                       fontWeight: FontWeight.w500,
-              //                       color: primaryColor),
-              //                 ),
-              //                 const Padding(
-              //                   padding: EdgeInsets.symmetric(vertical: 5),
-              //                   child: Text(
-              //                     "Delivered      :",
-              //                     style: TextStyle(
-              //                         fontSize: 18, fontWeight: FontWeight.w500),
-              //                   ),
-              //                 ),
-              //                 const Text(
-              //                   "Earning         :",
-              //                   style: TextStyle(
-              //                       fontSize: 18, fontWeight: FontWeight.w500),
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ],
-              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Card(
+                    elevation: 1,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text(
+                            "Pickups",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal:20),
+                            child: Text(
+                              "20",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                           SizedBox(
+                            height:10,
+                            width: 260,
+                          ),
+                          const Text(
+                            "Reviews",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal:20),
+                            child: Text(
+                              "20",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               activedonation.value != ""
                   ? const Text(
                       "Active Donation",
@@ -210,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
-                  "Pending Donation pickups ",
+                  "Upcoming Pickup's ",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 ),
               ),
@@ -438,21 +379,32 @@ class _HomeScreenState extends State<HomeScreen> {
               //         ],
               //       ),
               //     )),
+              SizedBox(height:10),
+              Text(
+                  "Customer Reviews ",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                ),
+                Card(
+
+                )
             ],
           ),
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
-            onPressed: () => EmailAuth().logout(context: context),
-            child: const Text("LogOut"),
-          ),
+        // bottomNavigationBar: Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        //   child: ElevatedButton(
+        //     style: ElevatedButton.styleFrom(
+        //         foregroundColor: Colors.white,
+        //         padding:
+        //             const EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
+        //     onPressed: () {Navigator.push(
+        //                   context,
+        //                   MaterialPageRoute(
+        //                       builder: (context) => MyAccount()));},
+        //     child: const Text("LogOut"),
+        //   ),
         ),
-      ),
-    );
+      );
+    
   }
 }

@@ -61,6 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: primaryColor),
                 ),
               ),
+              SizedBox(height:16),
               Text(
                 "Personal information",
                 style: TextStyle(
@@ -98,6 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _fullname,
                       ),
                     ),
+                    SizedBox(height:15),
                     const Text(
                       "Contact no.",
                       style:
@@ -124,31 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _contactNo,
                       ),
                     ),
-                    // const Text(
-                    //   "Aadhaar no.",
-                    //   style:
-                    //       TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    // ),
-                    // Card(
-                    //   shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(10)),
-                    //   elevation: 3,
-                    //   child: TextField(
-                    //     decoration: InputDecoration(
-                    //       fillColor: Colors.white,
-                    //       focusedBorder: OutlineInputBorder(
-                    //         borderSide: const BorderSide(
-                    //           color: Color.fromRGBO(106, 140, 175, 1),
-                    //         ),
-                    //         borderRadius: BorderRadius.circular(10),
-                    //       ),
-                    //       border: OutlineInputBorder(
-                    //           borderRadius: BorderRadius.circular(10),
-                    //           borderSide: BorderSide.none),
-                    //     ),
-                    //     con
-                    //   ),
-                    // ),
+                    SizedBox(height:15),
                     const Text(
                       "Email ID",
                       style:
@@ -175,6 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _email,
                       ),
                     ),
+                    SizedBox(height:15),
                     const Text(
                       "Vehicle Type",
                       style:
@@ -221,6 +200,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
+              SizedBox(height:20),
               Text(
                 "License details",
                 style: TextStyle(
@@ -258,8 +238,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _licenseno,
                       ),
                     ),
+                    SizedBox(height:15),
                     const Text(
-                      "Expiry Date",
+                      "Issue Date",
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                     ),
@@ -298,9 +279,77 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                     ),
+                    SizedBox(height:15),
+                    Text(
+                      "License Validity",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                    ),
+                    Card(
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: width - 110,
+                            child: TextField(
+                              // keyboardType: TextInputType.datetime,
+                              decoration: InputDecoration(
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color.fromRGBO(106, 140, 175, 1),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide.none),
+                              ),
+                              controller: _expirydate,
+                              readOnly: true,
+                              onTap: () => DatePicker().getDate(
+                                context: context,
+                                setDate: (date) =>
+                                    setState(() => _expirydate.text = date),
+                              ),
+                            ),
+                          ),
+                          
+                          const Icon(Icons.calendar_today_outlined)
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height:15),
+                    const Text(
+                      "Licensing Authority",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      elevation: 3,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Color.fromRGBO(106, 140, 175, 1),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide.none),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
+              const SizedBox(height:20),
               Text(
                 "Password",
                 style: TextStyle(
@@ -352,6 +401,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                     ),
+                    SizedBox(height:15),
                     const Text(
                       "Confirm Password",
                       style:
@@ -394,6 +444,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
+              SizedBox(height:30),
               Center(
                 child: ElevatedButton(
                     style: ButtonStyle(

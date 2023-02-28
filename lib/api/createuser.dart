@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:riderapp/data/userdata.dart';
-import 'package:riderapp/homescreen.dart';
+import 'package:riderapp/screens/homescreen.dart';
 
 class UserDetails {
   createUser({required BuildContext context}) async {

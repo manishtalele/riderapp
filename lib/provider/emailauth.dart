@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:riderapp/homescreen.dart';
+import 'package:riderapp/screens/homescreen.dart';
 import 'package:riderapp/login.dart';
 
 class EmailAuth {
