@@ -1,3 +1,4 @@
+import 'package:action_slider/action_slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -236,22 +237,43 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
-        child: ElevatedButton(
-            onPressed: () async => await completeDonation()
-                .whenComplete(() => Navigator.pop(context)),
-            style: ElevatedButton.styleFrom(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                backgroundColor: primary2Color,
-                minimumSize: Size(width, 50)),
-            child: const Text(
-              'Donation Picked',
-              style: TextStyle(
+        child:
+            ActionSlider.standard(
+              backgroundColor: primaryColor,
+              toggleColor: primary2Color,
+              width: 300.0,
+              actionThresholdType: ThresholdType.release,
+              child: const Text('Donation Picked',
+              style:TextStyle(
                   color: Colors.white,
                   fontSize: 18,
-                  fontWeight: FontWeight.w700),
-            )),
+                  fontWeight: FontWeight.w700)
+              ),
+              action: (controller) async {
+                controller.loading(); //starts loading animation
+                await Future.delayed(const Duration(seconds: 3));
+                controller.success(); //starts success animation
+                await Future.delayed(const Duration(seconds: 1));
+                controller.reset(); //resets the slider
+              },
+            ),
+
+        // child: ElevatedButton(
+        //     onPressed: () async => await completeDonation()
+        //         .whenComplete(() => Navigator.pop(context)),
+        //     style: ElevatedButton.styleFrom(
+        //         elevation: 0,
+        //         shape: RoundedRectangleBorder(
+        //             borderRadius: BorderRadius.circular(10)),
+        //         backgroundColor: primary2Color,
+        //         minimumSize: Size(width, 50)),
+        //     child: const Text(
+        //       'Donation Picked',
+        //       style: TextStyle(
+        //           color: Colors.white,
+        //           fontSize: 18,
+        //           fontWeight: FontWeight.w700),
+        //     )),
       ),
     );
   }

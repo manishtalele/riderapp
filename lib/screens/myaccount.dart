@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:riderapp/screens/notification.dart';
 import 'package:riderapp/screens/notificationsetting.dart';
 import 'package:riderapp/screens/orderdetail.dart';
 import 'package:riderapp/provider/emailauth.dart';
@@ -80,7 +81,7 @@ class _MyAccountState extends State<MyAccount> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const NotificationSetting()));
+                                   Notication()));
                     },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,

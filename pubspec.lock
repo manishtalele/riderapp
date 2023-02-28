@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  action_slider:
+    dependency: "direct main"
+    description:
+      name: action_slider
+      sha256: "8dc65fd8001203a6a641b041b9aedad71a6e894428d7e00f19038ca9a21615ce"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.1"
   animated_splash_screen:
     dependency: "direct main"
     description:
