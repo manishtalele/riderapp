@@ -50,7 +50,7 @@ class _ActiveCardState extends State<ActiveCard> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
+          padding: const EdgeInsets.all(10),
           child: loader
               ? const Center(
                   child: CircularProgressIndicator(),
