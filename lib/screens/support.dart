@@ -16,8 +16,11 @@ class _SupportState extends State<Support> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios,
-        color:primaryColor),
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios,
+          color:primaryColor),
+        ),
         elevation:0,
         backgroundColor: Colors.white,
         centerTitle: true,

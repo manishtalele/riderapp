@@ -22,8 +22,11 @@ class _SettingState extends State<Setting> {
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        leading: Icon(Icons.arrow_back_ios,
-        color: primaryColor,),
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios,
+          color: primaryColor,),
+        ),
         elevation :0,
         title: Text("Settings and Personalization",
         style:TextStyle(

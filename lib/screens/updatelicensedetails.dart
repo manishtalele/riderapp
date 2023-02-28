@@ -17,8 +17,11 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(Icons.arrow_back_ios,
-        color:primaryColor),
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios,
+          color:primaryColor),
+        ),
         elevation:0,
         centerTitle: true,
         automaticallyImplyLeading: false,

@@ -20,7 +20,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         centerTitle: true,
         automaticallyImplyLeading: false,
         elevation: 0,
-        leading: Icon(Icons.arrow_back_ios,color:primaryColor),
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios,color:primaryColor)),
         title:Text("Personal Details",
         style:TextStyle(
           fontSize: 20,
