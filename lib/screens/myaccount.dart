@@ -18,17 +18,19 @@ class MyAccount extends StatefulWidget {
 class _MyAccountState extends State<MyAccount> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios,
-          color: primaryColor,),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: primaryColor,
+          ),
         ),
-        elevation :0,
+        elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: Text(
@@ -70,36 +72,41 @@ class _MyAccountState extends State<MyAccount> {
               Container(
                 decoration: shadowdecoration,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical:14,horizontal: 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 14, horizontal: 15),
                   child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationSetting()));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const NotificationSetting()));
                     },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SvgPicture.asset(
-                                "assets/bell.svg",
-                                height: 22,
-                                width: 22,
-                              ),
-                              SizedBox(width:20),
-                        Text("Notifications",
-                        style:TextStyle(
-                          fontFamily: "Overpass",
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                        )),
-                        Spacer(),
-                        Icon(
-                            Icons.arrow_forward_ios,
-                          ),
+                          "assets/bell.svg",
+                          height: 22,
+                          width: 22,
+                        ),
+                        const SizedBox(width: 20),
+                        const Text("Notifications",
+                            style: TextStyle(
+                              fontFamily: "Overpass",
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            )),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height:15),
+              const SizedBox(height: 15),
               Container(
                 decoration: shadowdecoration,
                 child: Padding(
@@ -139,35 +146,39 @@ class _MyAccountState extends State<MyAccount> {
               Container(
                 decoration: shadowdecoration,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical:14,horizontal: 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 14, horizontal: 15),
                   child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderDetail()));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const OrderDetail()));
                     },
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                                "assets/order.svg",
-                                height: 22,
-                                width: 22,
-                              ),
-                              SizedBox(width:20),
-                        Text("Order Details",
-                        style:TextStyle(
-                          fontFamily: "Overpass",
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                        )),
-                        Spacer(),
-                        Icon(
-                            Icons.arrow_forward_ios,
-                          ),
+                          "assets/order.svg",
+                          height: 22,
+                          width: 22,
+                        ),
+                        const SizedBox(width: 20),
+                        const Text("Order Details",
+                            style: TextStyle(
+                              fontFamily: "Overpass",
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            )),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height:15),
+              const SizedBox(height: 15),
               InkWell(
                 onTap: () {
                   Navigator.push(context,
