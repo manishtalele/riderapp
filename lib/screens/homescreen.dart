@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riderapp/api/getdonationdata.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
-import 'package:riderapp/provider/emailauth.dart';
 import 'package:riderapp/theme/deftheme.dart';
 import 'package:riderapp/widget/activecard.dart';
 import 'package:riderapp/screens/myaccount.dart';
@@ -50,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     return RefreshIndicator(
       onRefresh: (() async {
         setState(() {
@@ -67,19 +66,22 @@ class _HomeScreenState extends State<HomeScreen> {
             "assets/rider_logo.png",
             height: 60,
           ),
-          actions:  [
+          actions: [
             Icon(
               Icons.notifications_none_outlined,
               color: primaryColor,
               size: 35,
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 22,0),
+              padding: const EdgeInsets.fromLTRB(15, 0, 22, 0),
               child: InkWell(
-                onTap:() {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MyAccount()));
-                },
-                child: SvgPicture.asset("assets/profile.svg")),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyAccount()));
+                  },
+                  child: SvgPicture.asset("assets/profile.svg")),
             ),
           ],
         ),
@@ -101,31 +103,31 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             "Pickups",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:20),
+                            padding: EdgeInsets.symmetric(horizontal: 20),
                             child: Text(
                               "20",
                               style: TextStyle(
                                   fontSize: 30, fontWeight: FontWeight.w600),
                             ),
                           ),
-                           SizedBox(
-                            height:10,
+                          SizedBox(
+                            height: 10,
                             width: 260,
                           ),
-                          const Text(
+                          Text(
                             "Reviews",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:20),
+                            padding: EdgeInsets.symmetric(horizontal: 20),
                             child: Text(
                               "20",
                               style: TextStyle(
@@ -379,14 +381,12 @@ class _HomeScreenState extends State<HomeScreen> {
               //         ],
               //       ),
               //     )),
-              SizedBox(height:10),
-              Text(
-                  "Customer Reviews ",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                Card(
-
-                )
+              const SizedBox(height: 10),
+              const Text(
+                "Customer Reviews ",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+              const Card()
             ],
           ),
         ),
@@ -403,8 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //                       builder: (context) => MyAccount()));},
         //     child: const Text("LogOut"),
         //   ),
-        ),
-      );
-    
+      ),
+    );
   }
 }

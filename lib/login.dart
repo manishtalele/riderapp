@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:riderapp/screens/homescreen.dart';
 import 'package:riderapp/provider/emailauth.dart';
 import 'package:riderapp/registration.dart';
 import 'package:riderapp/theme/deftheme.dart';

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -39,16 +41,21 @@ class EmailAuth {
       required BuildContext context}) async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: emailAddress, password: password)
-        .then((value) =>
-            value.user ??
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-                (route) => false))
+        .then((value) => {
+              log(value.user.toString()),
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  (route) => false)
+            })
         .catchError((e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        if (kDebugMode) {
+          print('No user found for that email.');
+        }
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        if (kDebugMode) {
+          print('Wrong password provided for that user.');
+        }
       }
       return e;
     });

@@ -1,10 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:riderapp/screens/homescreen.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
@@ -18,6 +16,37 @@ class ActiveDonationPage extends StatefulWidget {
 
 class _ActiveDonationPageState extends State<ActiveDonationPage> {
   int current = 0;
+
+  Future completeDonation() async {
+    await FirebaseFirestore.instance
+        .collection('Donation')
+        .doc(widget.orderDetails.donationid)
+        .set({
+      'Level': widget.orderDetails.level,
+      'Serves': widget.orderDetails.serves,
+      'SizeOfGood': widget.orderDetails.sizeofgood,
+      'Status': 'Done',
+      'Time': widget.orderDetails.datetime,
+      'TypeOfDonation': widget.orderDetails.typeOfDonation,
+      'address': widget.orderDetails.address,
+      'donationId': widget.orderDetails.donationid,
+      'foodName': widget.orderDetails.foodname,
+      'images': widget.orderDetails.images,
+      'name': widget.orderDetails.name,
+      'userId': widget.orderDetails.userid,
+    });
+
+    await FirebaseFirestore.instance
+        .collection('PendingDonation')
+        .doc(widget.orderDetails.donationid)
+        .delete();
+
+    await FirebaseFirestore.instance
+        .collection("Rider")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({'Active': ''});
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -80,7 +109,7 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
                 );
               }).toList(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -105,7 +134,7 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
                         width: 20,
                         height: 20,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Text(
@@ -208,46 +237,15 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
         child: ElevatedButton(
-            onPressed: () async {
-              await FirebaseFirestore.instance
-                  .collection('Donation')
-                  .doc(widget.orderDetails.donationid)
-                  .set({
-                'Level': widget.orderDetails.level,
-                'Serves': widget.orderDetails.serves,
-                'SizeOfGood': widget.orderDetails.sizeofgood,
-                'Status': 'Done',
-                'Time': widget.orderDetails.datetime,
-                'TypeOfDonation': widget.orderDetails.typeOfDonation,
-                'address': widget.orderDetails.address,
-                'donationId': widget.orderDetails.donationid,
-                'foodName': widget.orderDetails.foodname,
-                'images': widget.orderDetails.images,
-                'name': widget.orderDetails.name,
-                'userId': widget.orderDetails.userid,
-              });
-
-              await FirebaseFirestore.instance
-                  .collection('PendingDonation')
-                  .doc(widget.orderDetails.donationid)
-                  .delete();
-              
-              // setState(() { 
-              // activedonation.value = '';
-              // });
-            
-               await FirebaseFirestore.instance
-                    .collection("Rider")
-                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                    .update({'Active':''});
-            },
+            onPressed: () async => await completeDonation()
+                .whenComplete(() => Navigator.pop(context)),
             style: ElevatedButton.styleFrom(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 backgroundColor: primary2Color,
                 minimumSize: Size(width, 50)),
-            child: Text(
+            child: const Text(
               'Donation Picked',
               style: TextStyle(
                   color: Colors.white,
