@@ -53,10 +53,12 @@ class _MainState extends State<Main> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: primaryColor,
-        secondaryHeaderColor: primary2Color,
-        primarySwatch: Colors.cyan,
-      ),
+          primaryColor: primaryColor,
+          secondaryHeaderColor: primary2Color,
+          primarySwatch: Colors.blueGrey,
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(
+              backgroundColor: Colors.white, foregroundColor: primaryColor)),
       home: const Splash(),
     );
   }
