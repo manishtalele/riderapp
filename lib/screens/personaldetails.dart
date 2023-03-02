@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riderapp/theme/decoration.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
+
 class PersonalDetails extends StatefulWidget {
   const PersonalDetails({super.key});
 

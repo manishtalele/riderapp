@@ -1,3 +1,4 @@
+import 'package:action_slider/action_slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +17,8 @@ class ActiveDonationPage extends StatefulWidget {
 
 class _ActiveDonationPageState extends State<ActiveDonationPage> {
   int current = 0;
-
+  String slidertitle = "Donation Picked";
+  // double sliderwidth = 300 ;
   Future completeDonation() async {
     await FirebaseFirestore.instance
         .collection('Donation')
@@ -51,7 +53,7 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
+    // sliderwidth = width ;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -236,22 +238,80 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
-        child: ElevatedButton(
-            onPressed: () async => await completeDonation()
-                .whenComplete(() => Navigator.pop(context)),
-            style: ElevatedButton.styleFrom(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                backgroundColor: primary2Color,
-                minimumSize: Size(width, 50)),
-            child: const Text(
-              'Donation Picked',
+        child: ActionSlider.standard(
+          actionThresholdType: ThresholdType.release,
+          rolling: true,
+          width: width,
+          sliderBehavior: SliderBehavior.stretch,
+          child: Text(slidertitle,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
-                  fontWeight: FontWeight.w700),
-            )),
+                  fontWeight: FontWeight.w700)),
+          backgroundColor: primaryColor,
+          toggleColor: primary2Color,
+          iconAlignment: Alignment.center,
+          loadingIcon: SizedBox(
+              width: 55,
+              child: Center(
+                  child: SizedBox(
+                width: 24.0,
+                height: 24.0,
+                child: CircularProgressIndicator(
+                    strokeWidth: 2.0, color: primaryColor),
+              ))),
+          successIcon: const SizedBox(
+              width: 55, child: Center(child: Icon(Icons.check_rounded))),
+          icon: const SizedBox(
+              width: 55,
+              child: Center(child: Icon(Icons.arrow_forward_ios_rounded))),
+          action: (controller) async {
+            controller.loading(); //starts loading animation
+            await Future.delayed(const Duration(seconds: 3));
+            controller.success(); //starts success animation
+            await completeDonation().whenComplete(() => Navigator.pop(context));
+            // await Future.delayed(const Duration(seconds: 3));
+            controller.reset(); //resets the slider
+          },
+        ),
+        // ActionSlider.standard(
+        //   backgroundColor: primaryColor,
+        //   toggleColor: primary2Color,
+        //   sliderBehavior: SliderBehavior.stretch,
+        //   rolling: true,
+        //   width: 300.0,
+        //   actionThresholdType: ThresholdType.release,
+        //   child: const Text('Donation Picked',
+        //   style:TextStyle(
+        //       color: Colors.white,
+        //       fontSize: 18,
+        //       fontWeight: FontWeight.w700)
+        //   ),
+        //   action: (controller) async {
+        //     controller.loading(); //starts loading animation
+        //     await Future.delayed(const Duration(seconds: 3));
+        //     controller.success(); //starts success animation
+        //     await Future.delayed(const Duration(seconds: 1));
+        //     controller.reset(); //resets the slider
+        //   },
+        // ),
+
+        // child: ElevatedButton(
+        //     onPressed: () async => await completeDonation()
+        //         .whenComplete(() => Navigator.pop(context)),
+        //     style: ElevatedButton.styleFrom(
+        //         elevation: 0,
+        //         shape: RoundedRectangleBorder(
+        //             borderRadius: BorderRadius.circular(10)),
+        //         backgroundColor: primary2Color,
+        //         minimumSize: Size(width, 50)),
+        //     child: const Text(
+        //       'Donation Picked',
+        //       style: TextStyle(
+        //           color: Colors.white,
+        //           fontSize: 18,
+        //           fontWeight: FontWeight.w700),
+        //     )),
       ),
     );
   }

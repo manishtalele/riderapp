@@ -53,6 +53,9 @@ dependencies:
   carousel_slider: ^4.0.0
   image_picker: ^0.8.6+4
   image_cropper: ^3.0.1
+  flutter_switch: ^0.3.2
+  responsive_framework: ^0.2.0
+  action_slider: ^0.6.1
 
 dev_dependencies:
   flutter_test:

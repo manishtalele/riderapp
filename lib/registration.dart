@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:riderapp/api/createuser.dart';
@@ -61,7 +62,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: primaryColor),
                 ),
               ),
-              SizedBox(height:16),
+              const SizedBox(height: 16),
               Text(
                 "Personal information",
                 style: TextStyle(
@@ -99,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _fullname,
                       ),
                     ),
-                    SizedBox(height:15),
+                    const SizedBox(height: 15),
                     const Text(
                       "Contact no.",
                       style:
@@ -126,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _contactNo,
                       ),
                     ),
-                    SizedBox(height:15),
+                    const SizedBox(height: 15),
                     const Text(
                       "Email ID",
                       style:
@@ -153,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _email,
                       ),
                     ),
-                    SizedBox(height:15),
+                    const SizedBox(height: 15),
                     const Text(
                       "Vehicle Type",
                       style:
@@ -200,7 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
-              SizedBox(height:20),
+              const SizedBox(height: 20),
               Text(
                 "License details",
                 style: TextStyle(
@@ -238,7 +239,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: _licenseno,
                       ),
                     ),
-                    SizedBox(height:15),
+                    const SizedBox(height: 15),
                     const Text(
                       "Issue Date",
                       style:
@@ -279,8 +280,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(height:15),
-                    Text(
+                    const SizedBox(height: 15),
+                    const Text(
                       "License Validity",
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
@@ -316,12 +317,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                             ),
                           ),
-                          
                           const Icon(Icons.calendar_today_outlined)
                         ],
                       ),
                     ),
-                    const SizedBox(height:15),
+                    const SizedBox(height: 15),
                     const Text(
                       "Licensing Authority",
                       style:
@@ -349,7 +349,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height:20),
+              const SizedBox(height: 20),
               Text(
                 "Password",
                 style: TextStyle(
@@ -401,7 +401,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(height:15),
+                    const SizedBox(height: 15),
                     const Text(
                       "Confirm Password",
                       style:
@@ -444,7 +444,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
-              SizedBox(height:30),
+              const SizedBox(height: 30),
               Center(
                 child: ElevatedButton(
                     style: ButtonStyle(
@@ -480,7 +480,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 20,
                             backgroundColor: Theme.of(context).primaryColor,
                             textColor: Colors.white);
-                        print(e);
+                        if (kDebugMode) {
+                          print(e);
+                        }
                       }
                     },
                     child: const Padding(

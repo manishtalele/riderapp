@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 class OrderDetail extends StatefulWidget {
@@ -18,15 +16,17 @@ class _OrderDetailState extends State<OrderDetail> {
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios,
-          color: primaryColor,),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: primaryColor,
+          ),
         ),
-        elevation :0,
+        elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title:Text(
+        title: Text(
           "Order Details",
-          style:TextStyle(
+          style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
             color: primaryColor,

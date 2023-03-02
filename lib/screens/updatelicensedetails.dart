@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riderapp/theme/decoration.dart';
 import 'package:riderapp/theme/deftheme.dart';
+
 class UpdateLicenseDetails extends StatefulWidget {
   const UpdateLicenseDetails({super.key});
 
@@ -16,34 +17,35 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
   final TextEditingController _licenseAuthority = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double width= MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios,
-          color:primaryColor),
+          child: Icon(Icons.arrow_back_ios, color: primaryColor),
         ),
-        elevation:0,
+        elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title:Text("License Details",
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w400,
-          color: primaryColor,
-        ),),
+        title: Text(
+          "License Details",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+            color: primaryColor,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(30, 50, 30, 088),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Text("Driving License no.",
-              style:TextStyle(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text(
+              "Driving License no.",
+              style: TextStyle(
                 fontFamily: "Overpass",
                 fontSize: 15,
                 fontWeight: FontWeight.w400,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riderapp/theme/decoration.dart';
 import 'package:riderapp/theme/deftheme.dart';
+
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
 
@@ -16,22 +17,21 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar:AppBar(
-        elevation:0,
+      appBar: AppBar(
+        elevation: 0,
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios,
-          color:primaryColor),
+          child: Icon(Icons.arrow_back_ios, color: primaryColor),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        title:Text("Change Password",
-        style:TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w400,
-          color:primaryColor,
-        )),
+        title: Text("Change Password",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+              color: primaryColor,
+            )),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
