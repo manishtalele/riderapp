@@ -10,6 +10,10 @@ class UpdateLicenseDetails extends StatefulWidget {
 }
 
 class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
+  final TextEditingController _drivinglicno = TextEditingController();
+  final TextEditingController _issuedate = TextEditingController();
+  final TextEditingController _licencevalidity = TextEditingController();
+  final TextEditingController _licenseAuthority = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double width= MediaQuery.of(context).size.width;
@@ -45,8 +49,8 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                 fontWeight: FontWeight.w400,
               ),
               ),
-              SizedBox(height: 5),
               Container(
+                margin: EdgeInsets.only(top: 5, bottom: 15),
                 decoration: shadowdecoration,
                 child: TextField (
                       style: TextStyle(
@@ -58,19 +62,14 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                                 contentPadding: const EdgeInsets.all(15),
                                 filled: true,
                                 fillColor: Colors.white,
+                                suffixIcon: Icon(Icons.edit, color: primaryColor,),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(10)),
-                                    
-                                    icon: Padding(
-                                      padding:  EdgeInsets.fromLTRB(250, 0, 13, 0),
-                                      child: SvgPicture.asset('assets/edit.svg'),
-                                    ),
                               ),
-                              
+                              controller: _drivinglicno,
                 ),
               ),
-              SizedBox(height:20),
                Text("Issue Date",
               style:TextStyle(
                 fontFamily: "Overpass",
@@ -78,8 +77,8 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                 fontWeight: FontWeight.w400,
               ),
               ),
-              SizedBox(height: 5),
               Container(
+                margin: EdgeInsets.only(top: 5, bottom: 15),
                 decoration: shadowdecoration,
                 child: TextField (
                       style: TextStyle(
@@ -91,18 +90,14 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                                 contentPadding: const EdgeInsets.all(15),
                                 filled: true,
                                 fillColor: Colors.white,
+                                suffixIcon: Icon(Icons.edit, color: primaryColor,),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(10)),
-                                     icon:Padding(
-                                      padding: const EdgeInsets.fromLTRB(250, 0, 13, 0),
-                                      child: Icon(Icons.calendar_month_outlined),
-                                    ),
                               ),
-                              
+                              controller: _issuedate,
                 ),
               ),
-               SizedBox(height:20),
               Text("License Validity",
               style:TextStyle(
                 fontFamily: "Overpass",
@@ -110,8 +105,8 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                 fontWeight: FontWeight.w400,
               ),
               ),
-              SizedBox(height: 5),
               Container(
+                margin: EdgeInsets.only(top: 5, bottom: 15),
                 decoration: shadowdecoration,
                 child: TextField (
                       style: TextStyle(
@@ -123,19 +118,14 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                                 contentPadding: const EdgeInsets.all(15),
                                 filled: true,
                                 fillColor: Colors.white,
+                                suffixIcon: Icon(Icons.calendar_month_outlined, color: primaryColor,),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(10)),
-                                    icon:Padding(
-                                      padding: const EdgeInsets.fromLTRB(250, 0, 13, 0),
-                                      child: Icon(Icons.calendar_month_outlined),
-                                    ),
-                                    
                               ),
-                              
+                              controller: _licencevalidity,
                 ),
               ),
-               SizedBox(height:20),
               Text("Licensing  Authority",
               style:TextStyle(
                 fontFamily: "Overpass",
@@ -143,8 +133,8 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                 fontWeight: FontWeight.w400,
               ),
               ),
-              SizedBox(height: 5),
               Container(
+                margin: EdgeInsets.only(top: 5, bottom: 15),
                 decoration: shadowdecoration,
                 child: TextField (
                       style: TextStyle(
@@ -156,15 +146,12 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                                 contentPadding: const EdgeInsets.all(15),
                                 filled: true,
                                 fillColor: Colors.white,
+                                suffixIcon: Icon(Icons.edit, color: primaryColor,),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(10)),
-                                    icon: Padding(
-                                      padding:  EdgeInsets.fromLTRB(250, 0, 13, 0),
-                                      child: SvgPicture.asset('assets/edit.svg'),
-                                    ),
                               ),
-                              
+                              controller: _licenseAuthority,
                 ),
               ),
           ]),

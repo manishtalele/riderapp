@@ -33,16 +33,17 @@ class _SupportState extends State<Support> {
         ),
         ),
       ),
-      body: SingleChildScrollView(
-        child:Padding(
-          padding: const EdgeInsets.fromLTRB(20, 40, 20, 28),
-          child: Column(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child:Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                decoration: shadowdecoration,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical:14,horizontal: 15),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  decoration: shadowdecoration,
+                  padding: EdgeInsets.symmetric(vertical:14,horizontal: 15),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -66,11 +67,12 @@ class _SupportState extends State<Support> {
                   ),
                 ),
               ),
-              SizedBox(height:20),
-              Container(
-                decoration: shadowdecoration,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical:14,horizontal: 15),
+              GestureDetector(
+                onTap: (){},
+                child: Container(
+                  decoration: shadowdecoration,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  padding: EdgeInsets.symmetric(vertical:14,horizontal: 15),
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -93,11 +95,11 @@ class _SupportState extends State<Support> {
                   ),
                 ),
               ),
-               SizedBox(height:20),
-              Container(
-                decoration: shadowdecoration,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical:14,horizontal: 15),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  decoration: shadowdecoration,
+                  padding: EdgeInsets.symmetric(vertical:14,horizontal: 15),
                   child: Row(
                     children: [
                       SvgPicture.asset(

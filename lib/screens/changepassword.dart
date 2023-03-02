@@ -9,6 +9,9 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
+  final TextEditingController _existingpass = TextEditingController();
+  final TextEditingController _newpass = TextEditingController();
+  final TextEditingController _confirmpass = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +33,9 @@ class _ChangePasswordState extends State<ChangePassword> {
           color:primaryColor,
         )),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20 , 50, 20, 0),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
           child: Column(
             children: [
               Container(
@@ -56,11 +59,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w400,
                                     )
-                              ),      
+                              ), 
+                              controller: _existingpass,     
                 ),
               ),
-              SizedBox(height:20),
               Container(
+                margin: EdgeInsets.only(top: 30, bottom: 30),
                 decoration: shadowdecoration,
                 child: TextField (
                       style: TextStyle(
@@ -81,10 +85,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w400,
                                     )
-                              ),      
+                              ),    
+                              controller: _newpass,  
                 ),
               ),
-              SizedBox(height:20),
               Container(
                 decoration: shadowdecoration,
                 child: TextField (
@@ -106,7 +110,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w400,
                                     )
-                              ),      
+                              ),
+                              controller: _confirmpass,      
                 ),
               ),
             ],

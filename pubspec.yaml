@@ -51,6 +51,8 @@ dependencies:
   page_transition: ^2.0.9
   fluttertoast: ^8.1.1
   carousel_slider: ^4.0.0
+  image_picker: ^0.8.6+4
+  image_cropper: ^3.0.1
 
 dev_dependencies:
   flutter_test:

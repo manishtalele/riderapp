@@ -6,7 +6,7 @@ import 'package:riderapp/api/getdonationdata.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/theme/deftheme.dart';
 import 'package:riderapp/widget/activecard.dart';
-import 'package:riderapp/screens/myaccount.dart';
+import 'package:riderapp/screens/settings.dart';
 import 'package:riderapp/widget/upcomingcar.dart';
 
 ValueNotifier<List> pendingDonation = ValueNotifier<List>([]);
@@ -67,11 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 60,
           ),
           actions: [
-            Icon(
-              Icons.notifications_none_outlined,
-              color: primaryColor,
-              size: 35,
-            ),
+            // Icon(
+            //   Icons.notifications_none_outlined,
+            //   color: primaryColor,
+            //   size: 30,
+            // ),
+            SvgPicture.asset("assets/notifications.svg", height: 30, width: 30,),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 22, 0),
               child: InkWell(
@@ -79,315 +80,304 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MyAccount()));
+                            builder: (context) => const SettingsPage()));
                   },
-                  child: SvgPicture.asset("assets/profile.svg")),
+                  child: Icon(Icons.settings, size: 30,)
+                  // SvgPicture.asset("assets/profile.svg")
+                  ),
             ),
           ],
         ),
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Card(
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(color: Color.fromRGBO(106, 140, 175, 0.50), 
+                      borderRadius: BorderRadius.circular(10)),
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      width: width/2.4,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: const [
-                          Text(
-                            "Pickups",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w600),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              "20",
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                            width: 260,
-                          ),
-                          Text(
-                            "Reviews",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w600),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              "20",
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ],
+                        children: [
+                          Text("Pickups", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white),),
+                          SizedBox(height: 15,),
+                          Text("20", style: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: Colors.white),),
+                        ]
                       ),
                     ),
-                  ),
-                ],
-              ),
-              activedonation.value != ""
-                  ? const Text(
-                      "Active Donation",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    Container(
+                      decoration: BoxDecoration(color: Colors.red[300], borderRadius: BorderRadius.circular(10)),
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      width: width/2.4,
+                      child: Column(
+                        children: [
+                          Text("Delay", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white),),
+                          SizedBox(height: 15,),
+                          Text("20", style: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: Colors.white),),
+                        ]
+                      ),
+                    ),
+                  ],
+                ),
+                activedonation.value != ""
+                    ? Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: const Text(
+                          "Active Donation",
+                          style:
+                              TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                        ),
                     )
-                  : const SizedBox.shrink(),
-              activedonation.value != ""
-                  ? ActiveCard(orderid: activedonation.value)
-                  : const SizedBox.shrink(),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  "Upcoming Pickup's ",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    : const SizedBox.shrink(),
+                activedonation.value != ""
+                    ? ActiveCard(orderid: activedonation.value)
+                    : const SizedBox.shrink(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    "Upcoming Pickup's ",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  ),
                 ),
-              ),
-              // StreamBuilder(
-              //   stream: FirebaseFirestore.instance
-              //       .collection('PendingDonation')
-              //       .snapshots(),
-              //   builder: (context, snapshot) {
-              //     if (snapshot.hasError) {
-              //       return const Text('Something went wrong');
-              //     }
-              //     if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-              //       List pendingdonation = List.from(snapshot.data!.docs
-              //           .map((doc) => PendingDonationModel.from(doc.data())));
-              //       return ListView.builder(
-              //           shrinkWrap: true,
-              //           physics: const BouncingScrollPhysics(),
-              //           itemCount: pendingdonation.length,
-              //           itemBuilder: (context, index) {
-              //             return UpcomingCard(
-              //               upcomingdonation: pendingdonation[index],
-              //             );
-              //           });
-              //     }
-              //     return const Center(child: Text("No Data"));
-              //   },
-              // ),
-              Center(
-                child: ValueListenableBuilder(
-                  valueListenable: pendingDonation,
-                  builder: (contect, value, child) => ListView.builder(
-                      shrinkWrap: true,
-                      physics: const ScrollPhysics(),
-                      itemCount: value.isEmpty ? 1 : value.length,
-                      itemBuilder: (context, index) {
-                        if (value.isNotEmpty ||
-                            loader == false ||
-                            value.isNotEmpty) {
-                          PendingDonationModel postdata =
-                              PendingDonationModel.from(value[index]);
-                          return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: UpcomingCard(
-                                upcomingdonation: postdata,
-                                stateUpdate: () => setState(() {}),
-                              ));
-                        } else {
-                          return const Text("No Data");
-                        }
-                      }),
+                // StreamBuilder(
+                //   stream: FirebaseFirestore.instance
+                //       .collection('PendingDonation')
+                //       .snapshots(),
+                //   builder: (context, snapshot) {
+                //     if (snapshot.hasError) {
+                //       return const Text('Something went wrong');
+                //     }
+                //     if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+                //       List pendingdonation = List.from(snapshot.data!.docs
+                //           .map((doc) => PendingDonationModel.from(doc.data())));
+                //       return ListView.builder(
+                //           shrinkWrap: true,
+                //           physics: const BouncingScrollPhysics(),
+                //           itemCount: pendingdonation.length,
+                //           itemBuilder: (context, index) {
+                //             return UpcomingCard(
+                //               upcomingdonation: pendingdonation[index],
+                //             );
+                //           });
+                //     }
+                //     return const Center(child: Text("No Data"));
+                //   },
+                // ),
+                Center(
+                  child: ValueListenableBuilder(
+                    valueListenable: pendingDonation,
+                    builder: (contect, value, child) => ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemCount: value.isEmpty ? 1 : value.length,
+                        itemBuilder: (context, index) {
+                          if (value.isNotEmpty ||
+                              loader == false ||
+                              value.isNotEmpty) {
+                            PendingDonationModel postdata =
+                                PendingDonationModel.from(value[index]);
+                            return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                child: UpcomingCard(
+                                  upcomingdonation: postdata,
+                                  stateUpdate: () => setState(() {}),
+                                ));
+                          } else {
+                            return const Text("No Data");
+                          }
+                        }),
+                  ),
                 ),
-              ),
-
-              // Card(
-              //     elevation: 3,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //     child: Padding(
-              //       padding: const EdgeInsets.all(6),
-              //       child: Column(
-              //         children: [
-              //           InkWell(
-              //             onTap: () {
-              //               Navigator.push(
-              //                 context,
-              //                 MaterialPageRoute(
-              //                   builder: (context) => const OrderInfoScreen()
-              //                 )
-              //               );
-              //             },
-              //             child: Card(
-              //                 color: primary2Color,
-              //                 shape: RoundedRectangleBorder(
-              //                   borderRadius: BorderRadius.circular(10),
-              //                 ),
-              //                 child: Padding(
-              //                   padding: const EdgeInsets.all(10),
-              //                   child: Row(
-              //                     mainAxisAlignment:
-              //                         MainAxisAlignment.spaceBetween,
-              //                     children: [
-              //                       Column(
-              //                         crossAxisAlignment:
-              //                             CrossAxisAlignment.start,
-              //                         children: [
-              //                           const Text(
-              //                             "Order ID: #100070",
-              //                             style: TextStyle(
-              //                                 fontSize: 14,
-              //                                 fontWeight: FontWeight.w500),
-              //                           ),
-              //                           const SizedBox(
-              //                             height: 8,
-              //                           ),
-              //                           Row(
-              //                             children: const [
-              //                               Text(
-              //                                 "11 Jan 2022 , 7 km",
-              //                                 style: TextStyle(
-              //                                     fontSize: 12,
-              //                                     fontWeight: FontWeight.w400,
-              //                                     color: Color.fromRGBO(
-              //                                         00, 00, 00, 0.61)),
-              //                               ),
-              //                               Text(
-              //                                 "  | Dal Roti",
-              //                                 style: TextStyle(
-              //                                     fontSize: 12,
-              //                                     fontWeight: FontWeight.w400),
-              //                               ),
-              //                             ],
-              //                           ),
-              //                         ],
-              //                       ),
-              //                       const Icon(
-              //                         Icons.chevron_right_rounded,
-              //                         size: 40,
-              //                         color: Colors.white,
-              //                       )
-              //                     ],
-              //                   ),
-              //                 )),
-              //           ),
-              //           Card(
-              //               color: primary2Color,
-              //               shape: RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(10),
-              //               ),
-              //               child: Padding(
-              //                 padding: const EdgeInsets.all(10),
-              //                 child: Row(
-              //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //                   children: [
-              //                     Column(
-              //                       crossAxisAlignment: CrossAxisAlignment.start,
-              //                       children: [
-              //                         const Text(
-              //                           "Order ID: #100070",
-              //                           style: TextStyle(
-              //                               fontSize: 14,
-              //                               fontWeight: FontWeight.w500),
-              //                         ),
-              //                         const SizedBox(
-              //                           height: 8,
-              //                         ),
-              //                         Row(
-              //                           children: const [
-              //                             Text(
-              //                               "11 Jan 2022 , 7 km",
-              //                               style: TextStyle(
-              //                                   fontSize: 12,
-              //                                   fontWeight: FontWeight.w400,
-              //                                   color: Color.fromRGBO(
-              //                                       00, 00, 00, 0.61)),
-              //                             ),
-              //                             Text(
-              //                               "  | Dal Roti",
-              //                               style: TextStyle(
-              //                                   fontSize: 12,
-              //                                   fontWeight: FontWeight.w400),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                       ],
-              //                     ),
-              //                     const Icon(
-              //                       Icons.chevron_right_rounded,
-              //                       size: 40,
-              //                       color: Colors.white,
-              //                     )
-              //                   ],
-              //                 ),
-              //               )),
-              //           Card(
-              //               color: primary2Color,
-              //               shape: RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(10),
-              //               ),
-              //               child: Padding(
-              //                 padding: const EdgeInsets.all(10),
-              //                 child: Row(
-              //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //                   children: [
-              //                     Column(
-              //                       crossAxisAlignment: CrossAxisAlignment.start,
-              //                       children: [
-              //                         const Text(
-              //                           "Order ID: #100070",
-              //                           style: TextStyle(
-              //                               fontSize: 14,
-              //                               fontWeight: FontWeight.w500),
-              //                         ),
-              //                         const SizedBox(
-              //                           height: 8,
-              //                         ),
-              //                         Row(
-              //                           children: const [
-              //                             Text(
-              //                               "11 Jan 2022 , 7 km",
-              //                               style: TextStyle(
-              //                                   fontSize: 12,
-              //                                   fontWeight: FontWeight.w400,
-              //                                   color: Color.fromRGBO(
-              //                                       00, 00, 00, 0.61)),
-              //                             ),
-              //                             Text(
-              //                               "  | Dal Roti",
-              //                               style: TextStyle(
-              //                                   fontSize: 12,
-              //                                   fontWeight: FontWeight.w400),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                       ],
-              //                     ),
-              //                     const Icon(
-              //                       Icons.chevron_right_rounded,
-              //                       size: 40,
-              //                       color: Colors.white,
-              //                     )
-              //                   ],
-              //                 ),
-              //               )),
-              //         ],
-              //       ),
-              //     )),
-              const SizedBox(height: 10),
-              const Text(
-                "Customer Reviews ",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-              const Card()
-            ],
+        
+                // Card(
+                //     elevation: 3,
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(10),
+                //     ),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(6),
+                //       child: Column(
+                //         children: [
+                //           InkWell(
+                //             onTap: () {
+                //               Navigator.push(
+                //                 context,
+                //                 MaterialPageRoute(
+                //                   builder: (context) => const OrderInfoScreen()
+                //                 )
+                //               );
+                //             },
+                //             child: Card(
+                //                 color: primary2Color,
+                //                 shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(10),
+                //                 ),
+                //                 child: Padding(
+                //                   padding: const EdgeInsets.all(10),
+                //                   child: Row(
+                //                     mainAxisAlignment:
+                //                         MainAxisAlignment.spaceBetween,
+                //                     children: [
+                //                       Column(
+                //                         crossAxisAlignment:
+                //                             CrossAxisAlignment.start,
+                //                         children: [
+                //                           const Text(
+                //                             "Order ID: #100070",
+                //                             style: TextStyle(
+                //                                 fontSize: 14,
+                //                                 fontWeight: FontWeight.w500),
+                //                           ),
+                //                           const SizedBox(
+                //                             height: 8,
+                //                           ),
+                //                           Row(
+                //                             children: const [
+                //                               Text(
+                //                                 "11 Jan 2022 , 7 km",
+                //                                 style: TextStyle(
+                //                                     fontSize: 12,
+                //                                     fontWeight: FontWeight.w400,
+                //                                     color: Color.fromRGBO(
+                //                                         00, 00, 00, 0.61)),
+                //                               ),
+                //                               Text(
+                //                                 "  | Dal Roti",
+                //                                 style: TextStyle(
+                //                                     fontSize: 12,
+                //                                     fontWeight: FontWeight.w400),
+                //                               ),
+                //                             ],
+                //                           ),
+                //                         ],
+                //                       ),
+                //                       const Icon(
+                //                         Icons.chevron_right_rounded,
+                //                         size: 40,
+                //                         color: Colors.white,
+                //                       )
+                //                     ],
+                //                   ),
+                //                 )),
+                //           ),
+                //           Card(
+                //               color: primary2Color,
+                //               shape: RoundedRectangleBorder(
+                //                 borderRadius: BorderRadius.circular(10),
+                //               ),
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(10),
+                //                 child: Row(
+                //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //                   children: [
+                //                     Column(
+                //                       crossAxisAlignment: CrossAxisAlignment.start,
+                //                       children: [
+                //                         const Text(
+                //                           "Order ID: #100070",
+                //                           style: TextStyle(
+                //                               fontSize: 14,
+                //                               fontWeight: FontWeight.w500),
+                //                         ),
+                //                         const SizedBox(
+                //                           height: 8,
+                //                         ),
+                //                         Row(
+                //                           children: const [
+                //                             Text(
+                //                               "11 Jan 2022 , 7 km",
+                //                               style: TextStyle(
+                //                                   fontSize: 12,
+                //                                   fontWeight: FontWeight.w400,
+                //                                   color: Color.fromRGBO(
+                //                                       00, 00, 00, 0.61)),
+                //                             ),
+                //                             Text(
+                //                               "  | Dal Roti",
+                //                               style: TextStyle(
+                //                                   fontSize: 12,
+                //                                   fontWeight: FontWeight.w400),
+                //                             ),
+                //                           ],
+                //                         ),
+                //                       ],
+                //                     ),
+                //                     const Icon(
+                //                       Icons.chevron_right_rounded,
+                //                       size: 40,
+                //                       color: Colors.white,
+                //                     )
+                //                   ],
+                //                 ),
+                //               )),
+                //           Card(
+                //               color: primary2Color,
+                //               shape: RoundedRectangleBorder(
+                //                 borderRadius: BorderRadius.circular(10),
+                //               ),
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(10),
+                //                 child: Row(
+                //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //                   children: [
+                //                     Column(
+                //                       crossAxisAlignment: CrossAxisAlignment.start,
+                //                       children: [
+                //                         const Text(
+                //                           "Order ID: #100070",
+                //                           style: TextStyle(
+                //                               fontSize: 14,
+                //                               fontWeight: FontWeight.w500),
+                //                         ),
+                //                         const SizedBox(
+                //                           height: 8,
+                //                         ),
+                //                         Row(
+                //                           children: const [
+                //                             Text(
+                //                               "11 Jan 2022 , 7 km",
+                //                               style: TextStyle(
+                //                                   fontSize: 12,
+                //                                   fontWeight: FontWeight.w400,
+                //                                   color: Color.fromRGBO(
+                //                                       00, 00, 00, 0.61)),
+                //                             ),
+                //                             Text(
+                //                               "  | Dal Roti",
+                //                               style: TextStyle(
+                //                                   fontSize: 12,
+                //                                   fontWeight: FontWeight.w400),
+                //                             ),
+                //                           ],
+                //                         ),
+                //                       ],
+                //                     ),
+                //                     const Icon(
+                //                       Icons.chevron_right_rounded,
+                //                       size: 40,
+                //                       color: Colors.white,
+                //                     )
+                //                   ],
+                //                 ),
+                //               )),
+                //         ],
+                //       ),
+                //     )),
+                // const SizedBox(height: 10),
+                // const Text(
+                //   "Customer Reviews ",
+                //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                // ),
+                // const Card()
+              ],
+            ),
           ),
         ),
         // bottomNavigationBar: Padding(
