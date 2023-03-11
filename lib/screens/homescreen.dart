@@ -35,9 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
     pendingDonation.value = List.from(pendingDonation.value)
       ..addAll(await getDonationCards());
     await getActiveDonation();
-    setState(() {
-      loader = false;
-    });
+    if (pendingDonation.value.isNotEmpty) {
+      setState(() {
+        loader = false;
+      });
+    }
   }
 
   @override
