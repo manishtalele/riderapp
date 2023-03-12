@@ -243,11 +243,6 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
           rolling: true,
           width: width,
           sliderBehavior: SliderBehavior.stretch,
-          child: Text(slidertitle,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700)),
           backgroundColor: primaryColor,
           toggleColor: primary2Color,
           iconAlignment: Alignment.center,
@@ -273,6 +268,11 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
             // await Future.delayed(const Duration(seconds: 3));
             controller.reset(); //resets the slider
           },
+          child: Text(slidertitle,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700)),
         ),
         // ActionSlider.standard(
         //   backgroundColor: primaryColor,

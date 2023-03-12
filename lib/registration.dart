@@ -21,13 +21,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _contactNo = TextEditingController(),
       _licenseno = TextEditingController(),
       _expirydate = TextEditingController(),
+      _issuedate = TextEditingController(),
       _email = TextEditingController(),
       _password = TextEditingController(),
       _confirmPass = TextEditingController();
 
   bool showPassword = true, showConfirmPass = true;
   String vehicletype = "Scooter";
-
+  DateTime yesterDate = DateTime.now();
   setDetails() {
     username = _fullname.text;
     phoneNum = int.parse(_contactNo.text);
@@ -39,7 +40,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void initState() {
-    _expirydate.text = "";
+    _expirydate.text =
+        "${yesterDate.day - 1}/${yesterDate.month}/${yesterDate.year}";
+    _issuedate.text =
+        "${yesterDate.day - 1}/${yesterDate.month}/${yesterDate.year}";
     super.initState();
   }
 
@@ -224,6 +228,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       elevation: 3,
                       child: TextField(
+                        keyboardType: const TextInputType.numberWithOptions(),
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
@@ -254,7 +259,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             width: width - 110,
                             child: TextField(
-                              // keyboardType: TextInputType.datetime,
+                              keyboardType: TextInputType.datetime,
                               decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
@@ -267,13 +272,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide.none),
                               ),
-                              controller: _expirydate,
+                              controller: _issuedate,
                               readOnly: true,
                               onTap: () => DatePicker().getDate(
-                                context: context,
-                                setDate: (date) =>
-                                    setState(() => _expirydate.text = date),
-                              ),
+                                  context: context,
+                                  setDate: (date) => setState(() => date == null
+                                      ? _issuedate.text = ""
+                                      : _issuedate.text = date),
+                                  before: true),
                             ),
                           ),
                           const Icon(Icons.calendar_today_outlined)
@@ -312,8 +318,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               readOnly: true,
                               onTap: () => DatePicker().getDate(
                                 context: context,
-                                setDate: (date) =>
-                                    setState(() => _expirydate.text = date),
+                                setDate: (date) => setState(() => date == null
+                                    ? _expirydate.text = ""
+                                    : _expirydate.text = date),
+                                before: false,
                               ),
                             ),
                           ),

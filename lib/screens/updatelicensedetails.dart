@@ -50,112 +50,127 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 5, bottom: 15),
-                decoration: shadowdecoration,
-                child: TextField (
-                      style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.all(15),
-                                filled: true,
-                                fillColor: Colors.white,
-                                suffixIcon: Icon(Icons.edit, color: primaryColor,),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              controller: _drivinglicno,
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 5, bottom: 15),
+              decoration: shadowdecoration,
+              child: TextField(
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
                 ),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.all(15),
+                  filled: true,
+                  fillColor: Colors.white,
+                  suffixIcon: Icon(
+                    Icons.edit,
+                    color: primaryColor,
+                  ),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                controller: _drivinglicno,
               ),
-               Text("Issue Date",
-              style:TextStyle(
+            ),
+            const Text(
+              "Issue Date",
+              style: TextStyle(
                 fontFamily: "Overpass",
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 5, bottom: 15),
-                decoration: shadowdecoration,
-                child: TextField (
-                      style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.all(15),
-                                filled: true,
-                                fillColor: Colors.white,
-                                suffixIcon: Icon(Icons.edit, color: primaryColor,),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              controller: _issuedate,
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 5, bottom: 15),
+              decoration: shadowdecoration,
+              child: TextField(
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
                 ),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.all(15),
+                  filled: true,
+                  fillColor: Colors.white,
+                  suffixIcon: Icon(
+                    Icons.edit,
+                    color: primaryColor,
+                  ),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                controller: _issuedate,
               ),
-              Text("License Validity",
-              style:TextStyle(
+            ),
+            const Text(
+              "License Validity",
+              style: TextStyle(
                 fontFamily: "Overpass",
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 5, bottom: 15),
-                decoration: shadowdecoration,
-                child: TextField (
-                      style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.all(15),
-                                filled: true,
-                                fillColor: Colors.white,
-                                suffixIcon: Icon(Icons.calendar_month_outlined, color: primaryColor,),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              controller: _licencevalidity,
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 5, bottom: 15),
+              decoration: shadowdecoration,
+              child: TextField(
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
                 ),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.all(15),
+                  filled: true,
+                  fillColor: Colors.white,
+                  suffixIcon: Icon(
+                    Icons.calendar_month_outlined,
+                    color: primaryColor,
+                  ),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                controller: _licencevalidity,
               ),
-              Text("Licensing  Authority",
-              style:TextStyle(
+            ),
+            const Text(
+              "Licensing  Authority",
+              style: TextStyle(
                 fontFamily: "Overpass",
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 5, bottom: 15),
-                decoration: shadowdecoration,
-                child: TextField (
-                      style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.all(15),
-                                filled: true,
-                                fillColor: Colors.white,
-                                suffixIcon: Icon(Icons.edit, color: primaryColor,),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              controller: _licenseAuthority,
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 5, bottom: 15),
+              decoration: shadowdecoration,
+              child: TextField(
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
                 ),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.all(15),
+                  filled: true,
+                  fillColor: Colors.white,
+                  suffixIcon: Icon(
+                    Icons.edit,
+                    color: primaryColor,
+                  ),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                controller: _licenseAuthority,
               ),
+            ),
           ]),
         ),
       ),

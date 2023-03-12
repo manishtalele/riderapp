@@ -96,7 +96,9 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: ElevatedButton(
                 onPressed: () => EmailAuth().signInWithEmailAndPassword(
-                    context: context, password: password, emailAddress: email),
+                    context: context,
+                    password: password.trim(),
+                    emailAddress: email.trim()),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: primaryColor,
                     foregroundColor: Colors.white,

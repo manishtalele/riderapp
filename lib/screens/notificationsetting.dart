@@ -74,12 +74,12 @@ class _NotificationSettingState extends State<NotificationSetting> {
     double? fontsize16 = ResponsiveValue(
       context,
       defaultValue: 16.0,
-      valueWhen:  [
-        Condition.smallerThan(
+      valueWhen: [
+        const Condition.smallerThan(
           name: MOBILE,
           value: 12.0,
         ),
-        Condition.largerThan(
+        const Condition.largerThan(
           name: TABLET,
           value: 30.0,
         )
@@ -87,15 +87,14 @@ class _NotificationSettingState extends State<NotificationSetting> {
     ).value;
     checkfun();
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 0,
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon:  Icon(Icons.arrow_back_ios,
-              color: primaryColor)),
+              icon: Icon(Icons.arrow_back_ios, color: primaryColor)),
           backgroundColor: Colors.white,
           title: Text(
             "Notifications",
@@ -117,7 +116,8 @@ class _NotificationSettingState extends State<NotificationSetting> {
                 child: Container(
                   decoration: shadowdecoration,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical:14,horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14, horizontal: 20),
                     child: Row(
                       children: [
                         const Text('Push Notification',
@@ -151,7 +151,8 @@ class _NotificationSettingState extends State<NotificationSetting> {
                 child: Container(
                   decoration: shadowdecoration,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical:14,horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14, horizontal: 20),
                     child: Row(
                       children: [
                         const Text('SMS Notification',
@@ -180,10 +181,8 @@ class _NotificationSettingState extends State<NotificationSetting> {
                   ),
                 ),
               ),
-              
             ],
           ),
-        )
-    );
+        ));
   }
 }

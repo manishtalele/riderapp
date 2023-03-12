@@ -25,10 +25,12 @@ class _SettingsPageState extends State<SettingsPage> {
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios,
-          color: primaryColor,),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: primaryColor,
+          ),
         ),
-        elevation :0,
+        elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: Text(
@@ -69,32 +71,36 @@ class _SettingsPageState extends State<SettingsPage> {
                 //     )),
                 // const SizedBox(height: 25),
                 InkWell(
-                  onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationSetting()));
-                        },
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NotificationSetting()));
+                  },
                   child: Container(
                     decoration: shadowdecoration,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical:14,horizontal: 15),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 15),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SvgPicture.asset(
-                                  "assets/bell.svg",
-                                  height: 22,
-                                  width: 22,
-                                ),
-                                SizedBox(width:20),
-                          Text("Notifications",
-                          style:TextStyle(
-                            fontFamily: "Overpass",
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          )),
-                          Spacer(),
-                          Icon(
-                              Icons.arrow_forward_ios,
-                            ),
+                            "assets/bell.svg",
+                            height: 22,
+                            width: 22,
+                          ),
+                          const SizedBox(width: 20),
+                          const Text("Notifications",
+                              style: TextStyle(
+                                fontFamily: "Overpass",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                              )),
+                          const Spacer(),
+                          const Icon(
+                            Icons.arrow_forward_ios,
+                          ),
                         ],
                       ),
                     ),
@@ -104,14 +110,16 @@ class _SettingsPageState extends State<SettingsPage> {
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: InkWell(
                     onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const PersonalizationPage()));
-                          },
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const PersonalizationPage()));
+                    },
                     child: Container(
                       decoration: shadowdecoration,
-                      padding: EdgeInsets.symmetric(vertical: 14, horizontal: 15),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 15),
                       child: Row(
                         children: [
                           SvgPicture.asset(
@@ -136,30 +144,34 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 InkWell(
-                  onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderDetail()));
-                        },
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OrderDetail()));
+                  },
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical:14,horizontal: 15),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14, horizontal: 15),
                     decoration: shadowdecoration,
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                                "assets/order.svg",
-                                height: 22,
-                                width: 22,
-                              ),
-                              SizedBox(width:20),
-                        Text("Order Details",
-                        style:TextStyle(
-                          fontFamily: "Overpass",
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                        )),
-                        Spacer(),
-                        Icon(
-                            Icons.arrow_forward_ios,
-                          ),
+                          "assets/order.svg",
+                          height: 22,
+                          width: 22,
+                        ),
+                        const SizedBox(width: 20),
+                        const Text("Order Details",
+                            style: TextStyle(
+                              fontFamily: "Overpass",
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            )),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                        ),
                       ],
                     ),
                   ),
@@ -168,12 +180,15 @@ class _SettingsPageState extends State<SettingsPage> {
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Support()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Support()));
                     },
                     child: Container(
                       decoration: shadowdecoration,
-                      padding: EdgeInsets.symmetric(vertical: 14, horizontal: 15),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 15),
                       child: Row(
                         children: [
                           SvgPicture.asset(
@@ -200,8 +215,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 Container(
                   decoration: shadowdecoration,
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 14, horizontal: 15),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14, horizontal: 15),
                     child: Row(
                       children: [
                         SvgPicture.asset(
@@ -232,24 +247,24 @@ class _SettingsPageState extends State<SettingsPage> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
         child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        fixedSize: Size(width, 48)),
-                    onPressed: () async => EmailAuth().logout(context: context),
-                    icon: SvgPicture.asset("assets/logout.svg"),
-                    label: const Text(
-                      "Logout",
-                      style: TextStyle(
-                        fontFamily: "Overpass",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              fixedSize: Size(width, 48)),
+          onPressed: () async => EmailAuth().logout(context: context),
+          icon: SvgPicture.asset("assets/logout.svg"),
+          label: const Text(
+            "Logout",
+            style: TextStyle(
+              fontFamily: "Overpass",
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
     );
   }

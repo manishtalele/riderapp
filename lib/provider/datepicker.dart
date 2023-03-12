@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 class DatePicker {
-  getDate({required BuildContext context, required Function setDate}) async {
+  getDate(
+      {required BuildContext context,
+      required Function setDate,
+      required bool before}) async {
+    DateTime todaysDate = DateTime.now();
     DateTime? pickedDate = await showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
+        initialDate: todaysDate,
         firstDate: DateTime(1950),
         //DateTime.now() - not to allow to choose before today.
         lastDate: DateTime(2100));
-
-    if (pickedDate != null) {
-      String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
-      //formatted date output using intl package =>  2022-11-10
-      setDate(formattedDate);
+    if (before) {
+      if (pickedDate != null && pickedDate.compareTo(todaysDate) < 0) {
+        String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+        //formatted date output using intl package =>  2022-11-10
+        setDate(formattedDate);
+      } else {
+        Fluttertoast.showToast(msg: "Cant't Select this Date");
+        setDate(null);
+      }
     } else {
-      setDate(null);
+      if (pickedDate != null && pickedDate.compareTo(todaysDate) > 0) {
+        String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+        //formatted date output using intl package =>  2022-11-10
+        setDate(formattedDate);
+      } else {
+        Fluttertoast.showToast(msg: "Cant't Select this Date");
+        setDate(null);
+      }
     }
   }
 }

@@ -36,15 +36,16 @@ class _SupportState extends State<Support> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-          child:Column(
+          padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: () {},
                 child: Container(
                   decoration: shadowdecoration,
-                  padding: EdgeInsets.symmetric(vertical:14,horizontal: 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 14, horizontal: 15),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -69,11 +70,12 @@ class _SupportState extends State<Support> {
                 ),
               ),
               GestureDetector(
-                onTap: (){},
+                onTap: () {},
                 child: Container(
                   decoration: shadowdecoration,
-                  margin: EdgeInsets.symmetric(vertical: 20),
-                  padding: EdgeInsets.symmetric(vertical:14,horizontal: 15),
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 14, horizontal: 15),
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -100,7 +102,8 @@ class _SupportState extends State<Support> {
                 onTap: () {},
                 child: Container(
                   decoration: shadowdecoration,
-                  padding: EdgeInsets.symmetric(vertical:14,horizontal: 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 14, horizontal: 15),
                   child: Row(
                     children: [
                       SvgPicture.asset(

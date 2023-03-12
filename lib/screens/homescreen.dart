@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riderapp/api/getdonationdata.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
-import 'package:riderapp/theme/deftheme.dart';
 import 'package:riderapp/widget/activecard.dart';
 import 'package:riderapp/screens/settings.dart';
 import 'package:riderapp/widget/upcomingcar.dart';
@@ -74,7 +73,11 @@ class _HomeScreenState extends State<HomeScreen> {
             //   color: primaryColor,
             //   size: 30,
             // ),
-            SvgPicture.asset("assets/notifications.svg", height: 30, width: 30,),
+            SvgPicture.asset(
+              "assets/notifications.svg",
+              height: 30,
+              width: 30,
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 22, 0),
               child: InkWell(
@@ -84,7 +87,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         MaterialPageRoute(
                             builder: (context) => const SettingsPage()));
                   },
-                  child: Icon(Icons.settings, size: 30,)
+                  child: const Icon(
+                    Icons.settings,
+                    size: 30,
+                  )
                   // SvgPicture.asset("assets/profile.svg")
                   ),
             ),
@@ -102,41 +108,68 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      decoration: BoxDecoration(color: Color.fromRGBO(106, 140, 175, 0.50), 
-                      borderRadius: BorderRadius.circular(10)),
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      width: width/2.4,
-                      child: Column(
-                        children: [
-                          Text("Pickups", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white),),
-                          SizedBox(height: 15,),
-                          Text("20", style: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: Colors.white),),
-                        ]
-                      ),
+                      decoration: BoxDecoration(
+                          color: const Color.fromRGBO(106, 140, 175, 0.50),
+                          borderRadius: BorderRadius.circular(10)),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      width: width / 2.4,
+                      child: Column(children: const [
+                        Text(
+                          "Pickups",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "20",
+                          style: TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                      ]),
                     ),
                     Container(
-                      decoration: BoxDecoration(color: Colors.red[300], borderRadius: BorderRadius.circular(10)),
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      width: width/2.4,
-                      child: Column(
-                        children: [
-                          Text("Delay", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white),),
-                          SizedBox(height: 15,),
-                          Text("20", style: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: Colors.white),),
-                        ]
-                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.red[300],
+                          borderRadius: BorderRadius.circular(10)),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      width: width / 2.4,
+                      child: Column(children: const [
+                        Text(
+                          "Delay",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "20",
+                          style: TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                      ]),
                     ),
                   ],
                 ),
                 activedonation.value != ""
-                    ? Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: const Text(
+                    ? const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
                           "Active Donation",
-                          style:
-                              TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
                         ),
-                    )
+                      )
                     : const SizedBox.shrink(),
                 activedonation.value != ""
                     ? ActiveCard(orderid: activedonation.value)
@@ -186,7 +219,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             PendingDonationModel postdata =
                                 PendingDonationModel.from(value[index]);
                             return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5),
                                 child: UpcomingCard(
                                   upcomingdonation: postdata,
                                   stateUpdate: () => setState(() {}),
@@ -197,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         }),
                   ),
                 ),
-        
+
                 // Card(
                 //     elevation: 3,
                 //     shape: RoundedRectangleBorder(
