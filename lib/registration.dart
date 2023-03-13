@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:riderapp/api/createuser.dart';
 import 'package:riderapp/data/userdata.dart';
 import 'package:riderapp/provider/datepicker.dart';
@@ -23,6 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _expirydate = TextEditingController(),
       _issuedate = TextEditingController(),
       _email = TextEditingController(),
+      _licenseauthority = TextEditingController(),
       _password = TextEditingController(),
       _confirmPass = TextEditingController();
 
@@ -50,461 +52,433 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double sidepadding =
+        ResponsiveValue(context, defaultValue: 20.0, valueWhen: const [
+      Condition.smallerThan(name: MOBILE, value: 18.0),
+      Condition.largerThan(name: TABLET, value: 30.0)
+    ]).value as double;
+    double? fontsize16 =
+        ResponsiveValue(context, defaultValue: 16.0, valueWhen: const [
+      Condition.smallerThan(name: MOBILE, value: 12.0),
+      Condition.largerThan(name: TABLET, value: 24.0)
+    ]).value;
+    double? fontsize20 =
+        ResponsiveValue(context, defaultValue: 20.0, valueWhen: const [
+      Condition.smallerThan(name: MOBILE, value: 16.0),
+      Condition.largerThan(name: TABLET, value: 30.0)
+    ]).value;
+    double? fontsize24 =
+        ResponsiveValue(context, defaultValue: 24.0, valueWhen: const [
+      Condition.smallerThan(name: MOBILE, value: 20.0),
+      Condition.largerThan(name: TABLET, value: 32.0)
+    ]).value;
+    double btnheight =
+        ResponsiveValue(context, defaultValue: 50.0, valueWhen: const [
+      Condition.smallerThan(name: MOBILE, value: 30.0),
+      Condition.largerThan(name: TABLET, value: 65.0)
+    ]).value as double;
+    double? iconsize =
+        ResponsiveValue(context, defaultValue: 25.0, valueWhen: const [
+      Condition.smallerThan(name: MOBILE, value: 15.0),
+      Condition.largerThan(name: TABLET, value: 35.0)
+    ]).value;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 60, 20, 40),
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              size: iconsize,
+            )),
+        elevation: 0,
+        title: Text(
+          "SIGN UP",
+          style: TextStyle(
+              fontSize: fontsize24,
+              fontWeight: FontWeight.w400,
+              color: primaryColor),
+        ),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(sidepadding, 20, sidepadding, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  "SIGN UP",
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w400,
-                      color: primaryColor),
-                ),
-              ),
-              const SizedBox(height: 16),
               Text(
                 "Personal information",
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: fontsize20,
                     fontWeight: FontWeight.w400,
                     color: primary2Color),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 15, 15, 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Full Name",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(106, 140, 175, 1),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none),
-                        ),
-                        controller: _fullname,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      "Contact no.",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(106, 140, 175, 1),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none),
-                        ),
-                        controller: _contactNo,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      "Email ID",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(106, 140, 175, 1),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none),
-                        ),
-                        controller: _email,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      "Vehicle Type",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton2(
-                          buttonDecoration: const BoxDecoration(
-                              // color: Color.fromRGBO(233, 245, 255, 12),
-                              shape: BoxShape.rectangle,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          buttonPadding:
-                              const EdgeInsets.symmetric(horizontal: 10),
-                          items: items
-                              .map((item) => DropdownMenuItem(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        // color: Color.fromRGBO(24, 101, 137, 0.8),
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                          value: vehicletype,
-                          onChanged: (value) {
-                            setState(() {
-                              vehicletype = value as String;
-                            });
-                          },
-                          buttonHeight: 50,
-                          buttonWidth: width,
-                          itemHeight: 40,
-                        ),
-                      ),
-                    ),
-                  ],
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Full Name",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, bottom: 15),
+                height: btnheight,
+                width: width,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.4, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                  ),
+                  style: TextStyle(
+                      fontSize: fontsize16, fontWeight: FontWeight.w400),
+                  controller: _fullname,
                 ),
               ),
-              const SizedBox(height: 20),
+              Text(
+                "Contact no.",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, bottom: 15),
+                height: btnheight,
+                width: width,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.4, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                  ),
+                  style: TextStyle(
+                      fontSize: fontsize16, fontWeight: FontWeight.w400),
+                  controller: _contactNo,
+                ),
+              ),
+              Text(
+                "Email ID",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, bottom: 15),
+                height: btnheight,
+                width: width,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.4, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                  ),
+                  style: TextStyle(
+                      fontSize: fontsize16, fontWeight: FontWeight.w400),
+                  controller: _email,
+                ),
+              ),
+              Text(
+                "Vehicle Type",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5, bottom: 20),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton2(
+                    buttonDecoration: BoxDecoration(
+                        border: Border.all(width: 0.4, color: Colors.grey),
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10))),
+                    buttonPadding: const EdgeInsets.symmetric(horizontal: 10),
+                    items: items
+                        .map((item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: TextStyle(
+                                  fontSize: fontsize16,
+                                  fontWeight: FontWeight.w400,
+                                  // color: Color.fromRGBO(24, 101, 137, 0.8),
+                                ),
+                              ),
+                            ))
+                        .toList(),
+                    value: vehicletype,
+                    onChanged: (value) {
+                      setState(() {
+                        vehicletype = value as String;
+                      });
+                    },
+                    buttonHeight: btnheight,
+                    buttonWidth: width,
+                  ),
+                ),
+              ),
               Text(
                 "License details",
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: fontsize20,
                     fontWeight: FontWeight.w400,
                     color: primary2Color),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 15, 15, 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Driving License no.",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: TextField(
-                        keyboardType: const TextInputType.numberWithOptions(),
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(106, 140, 175, 1),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none),
-                        ),
-                        controller: _licenseno,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      "Issue Date",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: width - 110,
-                            child: TextField(
-                              keyboardType: TextInputType.datetime,
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(106, 140, 175, 1),
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide.none),
-                              ),
-                              controller: _issuedate,
-                              readOnly: true,
-                              onTap: () => DatePicker().getDate(
-                                  context: context,
-                                  setDate: (date) => setState(() => date == null
-                                      ? _issuedate.text = ""
-                                      : _issuedate.text = date),
-                                  before: true),
-                            ),
-                          ),
-                          const Icon(Icons.calendar_today_outlined)
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      "License Validity",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: width - 110,
-                            child: TextField(
-                              // keyboardType: TextInputType.datetime,
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(106, 140, 175, 1),
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide.none),
-                              ),
-                              controller: _expirydate,
-                              readOnly: true,
-                              onTap: () => DatePicker().getDate(
-                                context: context,
-                                setDate: (date) => setState(() => date == null
-                                    ? _expirydate.text = ""
-                                    : _expirydate.text = date),
-                                before: false,
-                              ),
-                            ),
-                          ),
-                          const Icon(Icons.calendar_today_outlined)
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      "Licensing Authority",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(106, 140, 175, 1),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none),
-                        ),
-                      ),
-                    ),
-                  ],
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Driving License no.",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, bottom: 15),
+                height: btnheight,
+                width: width,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.4, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  keyboardType: const TextInputType.numberWithOptions(),
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                  ),
+                  style: TextStyle(
+                      fontSize: fontsize16, fontWeight: FontWeight.w400),
+                  controller: _licenseno,
                 ),
               ),
-              const SizedBox(height: 20),
+              Text(
+                "Issue Date",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, bottom: 15),
+                height: btnheight,
+                width: width,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.4, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  keyboardType: TextInputType.datetime,
+                  decoration: InputDecoration(
+                    suffixIcon: Icon(
+                      Icons.calendar_today_outlined,
+                      color: Colors.grey.shade600,
+                    ),
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                  ),
+                  style: TextStyle(
+                      fontSize: fontsize16, fontWeight: FontWeight.w400),
+                  controller: _issuedate,
+                  readOnly: true,
+                  onTap: () => DatePicker().getDate(
+                      context: context,
+                      setDate: (date) => setState(() => date == null
+                          ? _issuedate.text = ""
+                          : _issuedate.text = date),
+                      before: true),
+                ),
+              ),
+              Text(
+                "License Validity",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                  margin: const EdgeInsets.only(top: 5, bottom: 15),
+                  height: btnheight,
+                  width: width,
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 0.4, color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: TextField(
+                    // keyboardType: TextInputType.datetime,
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      suffixIcon: Icon(
+                        Icons.calendar_today_outlined,
+                        color: Colors.grey.shade600,
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none),
+                    ),
+                    style: TextStyle(
+                        fontSize: fontsize16, fontWeight: FontWeight.w400),
+                    controller: _expirydate,
+                    readOnly: true,
+                    onTap: () => DatePicker().getDate(
+                      context: context,
+                      setDate: (date) => setState(() => date == null
+                          ? _expirydate.text = ""
+                          : _expirydate.text = date),
+                      before: false,
+                    ),
+                  )),
+              Text(
+                "Licensing Authority",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, bottom: 20),
+                height: btnheight,
+                width: width,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.4, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                  ),
+                  style: TextStyle(
+                      fontSize: fontsize16, fontWeight: FontWeight.w400),
+                  controller: _licenseauthority,
+                ),
+              ),
               Text(
                 "Password",
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: fontsize20,
                     fontWeight: FontWeight.w400,
                     color: primary2Color),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 15, 15, 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Create Password",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: width - 150,
-                            child: TextField(
-                              obscureText: showPassword,
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(106, 140, 175, 1),
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide.none),
-                              ),
-                              controller: _password,
-                            ),
-                          ),
-                          const Spacer(),
-                          IconButton(
-                            icon: const Icon(Icons.visibility_off_outlined),
-                            onPressed: () =>
-                                setState(() => showPassword = !showPassword),
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    const Text(
-                      "Confirm Password",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 3,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: width - 150,
-                            child: TextField(
-                              obscureText: showConfirmPass,
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(106, 140, 175, 1),
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide.none),
-                              ),
-                              controller: _confirmPass,
-                            ),
-                          ),
-                          const Spacer(),
-                          IconButton(
-                            icon: const Icon(Icons.visibility_off_outlined),
-                            onPressed: () => setState(
-                                () => showConfirmPass = !showConfirmPass),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Create Password",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, bottom: 15),
+                height: btnheight,
+                width: width,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.4, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  obscureText: showPassword,
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    suffixIcon: IconButton(
+                        onPressed: () =>
+                            setState(() => showPassword = !showPassword),
+                        icon: Icon(
+                          Icons.visibility_off_outlined,
+                          color: Colors.grey.shade600,
+                        )),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                  ),
+                  style: TextStyle(
+                      fontSize: fontsize16, fontWeight: FontWeight.w400),
+                  controller: _password,
                 ),
               ),
-              const SizedBox(height: 30),
-              Center(
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(primaryColor),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ))),
-                    onPressed: () async {
-                      try {
-                        if (_password.text == _confirmPass.text) {
-                          await setDetails();
-                          await EmailAuth()
-                              .createUserWithEmailAndPassword(
-                                  emailAddress: _email.text,
-                                  password: _password.text)
-                              .then((value) async => await UserDetails()
-                                  .createUser(context: context));
-                        } else {
-                          Fluttertoast.showToast(
-                              msg: "Please Enter Proper Password",
-                              toastLength: Toast.LENGTH_LONG,
-                              fontSize: 20,
-                              backgroundColor: Theme.of(context).primaryColor,
-                              textColor: Colors.white);
-                        }
-                      } catch (e) {
+              Text(
+                "Confirm Password",
+                style: TextStyle(
+                    fontSize: fontsize16, fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, bottom: 50),
+                height: btnheight,
+                width: width,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.4, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  obscureText: showConfirmPass,
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    suffixIcon: IconButton(
+                        onPressed: () =>
+                            setState(() => showConfirmPass = !showConfirmPass),
+                        icon: Icon(
+                          Icons.visibility_off_outlined,
+                          color: Colors.grey.shade600,
+                        )),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none),
+                  ),
+                  style: TextStyle(
+                      fontSize: fontsize16, fontWeight: FontWeight.w400),
+                  controller: _confirmPass,
+                ),
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      minimumSize: Size(width, btnheight)),
+                  onPressed: () async {
+                    try {
+                      if (_password.text == _confirmPass.text) {
+                        await setDetails();
+                        await EmailAuth()
+                            .createUserWithEmailAndPassword(
+                                emailAddress: _email.text,
+                                password: _password.text)
+                            .then((value) async => await UserDetails()
+                                .createUser(context: context));
+                      } else {
                         Fluttertoast.showToast(
-                            msg: "Something Went Wrong",
+                            msg: "Please Enter Proper Password",
                             toastLength: Toast.LENGTH_LONG,
                             fontSize: 20,
                             backgroundColor: Theme.of(context).primaryColor,
                             textColor: Colors.white);
-                        if (kDebugMode) {
-                          print(e);
-                        }
                       }
-                    },
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 100),
-                      child: Text(
-                        "SIGN UP",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ),
-                    )),
-              )
+                    } catch (e) {
+                      Fluttertoast.showToast(
+                          msg: "Something Went Wrong",
+                          toastLength: Toast.LENGTH_LONG,
+                          fontSize: 20,
+                          backgroundColor: Theme.of(context).primaryColor,
+                          textColor: Colors.white);
+                      if (kDebugMode) {
+                        print(e);
+                      }
+                    }
+                  },
+                  child: Text(
+                    "SIGN UP",
+                    style: TextStyle(
+                      fontSize: fontsize16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ))
             ],
           ),
         ),
