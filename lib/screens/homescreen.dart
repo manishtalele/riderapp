@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riderapp/api/getdonationdata.dart';
+import 'package:riderapp/api/getreviewapi.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/widget/activecard.dart';
 import 'package:riderapp/screens/settings.dart';
@@ -28,16 +29,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool loader = true;
-
+  bool loader = true, reviewloader = true;
+  List reviewData = [];
   Future callApi() async {
+    setState(() {
+      loader = true;
+      reviewloader = true;
+    });
     pendingDonation.value = List.from(pendingDonation.value)..clear();
     pendingDonation.value = List.from(pendingDonation.value)
       ..addAll(await getDonationCards());
     await getActiveDonation();
+    reviewData = await getReviewData();
     if (pendingDonation.value.isNotEmpty) {
       setState(() {
         loader = false;
+        reviewloader = false;
       });
     }
   }
@@ -214,7 +221,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 ),
                 const SizedBox(height: 10),
-                const ReviewCards(),
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemCount: reviewData.isEmpty ? 1 : reviewData.length,
+                    itemBuilder: (context, index) {
+                      if (reviewData.isNotEmpty ||
+                          loader == false ||
+                          reviewData.isNotEmpty) {
+                        return ReviewCards(
+                          address: reviewData[index]["address"],
+                          date: reviewData[index]["time"],
+                          name: reviewData[index]["name"],
+                          review: reviewData[index]["review"],
+                          starCount: reviewData[index]["starcount"],
+                        );
+                      } else {
+                        return const Text("No Reviews Yet");
+                      }
+                    }),
                 const SizedBox(height: 10),
               ],
             ),
