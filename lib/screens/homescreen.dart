@@ -41,12 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ..addAll(await getDonationCards());
     await getActiveDonation();
     reviewData = await getReviewData();
-    if (pendingDonation.value.isNotEmpty) {
-      setState(() {
+    setState(() {
+      if (pendingDonation.value.isNotEmpty) {
         loader = false;
+      }
+      if (reviewData.isNotEmpty) {
         reviewloader = false;
-      });
-    }
+      }
+    });
   }
 
   @override
@@ -63,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onRefresh: (() async {
         setState(() {
           loader = true;
+          reviewloader = true;
         });
         await callApi();
       }),
