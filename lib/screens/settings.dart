@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:riderapp/screens/notificationsetting.dart';
 import 'package:riderapp/screens/orderdetail.dart';
 import 'package:riderapp/provider/emailauth.dart';
 import 'package:riderapp/screens/personalization.dart';
 import 'package:riderapp/screens/support.dart';
-import 'package:riderapp/theme/decoration.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -19,6 +19,11 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double btnheight =
+        ResponsiveValue(context, defaultValue: 50.0, valueWhen: const [
+      Condition.smallerThan(name: MOBILE, value: 30.0),
+      Condition.largerThan(name: TABLET, value: 65.0)
+    ]).value as double;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -44,188 +49,170 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 40, 20, 28),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // const CircleAvatar(
-                //   backgroundImage: AssetImage("assets/avatar.png"),
-                //   radius: 50,
-                // ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-                // const Text("Gajodhar Halwai",
-                //     style: TextStyle(
-                //       fontSize: 14,
-                //       fontFamily: "Poppins",
-                //       fontWeight: FontWeight.w500,
-                //     )),
-                // Text("878899001",
-                //     style: TextStyle(
-                //       fontSize: 14,
-                //       fontFamily: "Poppins",
-                //       fontWeight: FontWeight.w500,
-                //       color: primary3Color,
-                //     )),
-                // const SizedBox(height: 25),
-                InkWell(
-                  onTap: () {
+          padding: const EdgeInsets.fromLTRB(20, 40, 20, 28),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // const CircleAvatar(
+              //   backgroundImage: AssetImage("assets/avatar.png"),
+              //   radius: 50,
+              // ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // const Text("Gajodhar Halwai",
+              //     style: TextStyle(
+              //       fontSize: 14,
+              //       fontFamily: "Poppins",
+              //       fontWeight: FontWeight.w500,
+              //     )),
+              // Text("878899001",
+              //     style: TextStyle(
+              //       fontSize: 14,
+              //       fontFamily: "Poppins",
+              //       fontWeight: FontWeight.w500,
+              //       color: primary3Color,
+              //     )),
+              // const SizedBox(height: 25),
+              ElevatedButton(
+                  onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const NotificationSetting()));
                   },
-                  child: Container(
-                    decoration: shadowdecoration,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 14, horizontal: 15),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset(
-                            "assets/bell.svg",
-                            height: 22,
-                            width: 22,
-                          ),
-                          const SizedBox(width: 20),
-                          const Text("Notifications",
-                              style: TextStyle(
-                                fontFamily: "Overpass",
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                              )),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                          ),
-                        ],
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      minimumSize: Size(width, btnheight),
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                          side:
+                              const BorderSide(width: 0.4, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10))),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        "assets/bell.svg",
+                        height: 22,
+                        width: 22,
                       ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: InkWell(
-                    onTap: () {
+                      const SizedBox(width: 20),
+                      const Text("Notifications",
+                          style: TextStyle(
+                            fontFamily: "Overpass",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          )),
+                      const Spacer(),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                      ),
+                    ],
+                  )),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: ElevatedButton(
+                    onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
                                   const PersonalizationPage()));
                     },
-                    child: Container(
-                      decoration: shadowdecoration,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 14, horizontal: 15),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            "assets/setting.svg",
-                            height: 22,
-                            width: 22,
-                          ),
-                          const SizedBox(width: 20),
-                          const Text("Personalization",
-                              style: TextStyle(
-                                fontFamily: "Overpass",
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                              )),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        minimumSize: Size(width, btnheight),
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.4, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10))),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          "assets/setting.svg",
+                          height: 22,
+                          width: 22,
+                        ),
+                        const SizedBox(width: 20),
+                        const Text("Personalization",
+                            style: TextStyle(
+                              fontFamily: "Overpass",
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            )),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                        ),
+                      ],
+                    )),
+              ),
+              ElevatedButton(
+                  onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const OrderDetail()));
                   },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 14, horizontal: 15),
-                    decoration: shadowdecoration,
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          "assets/order.svg",
-                          height: 22,
-                          width: 22,
-                        ),
-                        const SizedBox(width: 20),
-                        const Text("Order Details",
-                            style: TextStyle(
-                              fontFamily: "Overpass",
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                            )),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: InkWell(
-                    onTap: () {
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      minimumSize: Size(width, btnheight),
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                          side:
+                              const BorderSide(width: 0.4, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10))),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        "assets/order.svg",
+                        height: 22,
+                        width: 22,
+                      ),
+                      const SizedBox(width: 20),
+                      const Text("Order Details",
+                          style: TextStyle(
+                            fontFamily: "Overpass",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          )),
+                      const Spacer(),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                      ),
+                    ],
+                  )),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: ElevatedButton(
+                    onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const Support()));
                     },
-                    child: Container(
-                      decoration: shadowdecoration,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 14, horizontal: 15),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            "assets/support.svg",
-                            height: 22,
-                            width: 22,
-                          ),
-                          const SizedBox(width: 20),
-                          const Text("Support",
-                              style: TextStyle(
-                                fontFamily: "Overpass",
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                              )),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: shadowdecoration,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 14, horizontal: 15),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        minimumSize: Size(width, btnheight),
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.4, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10))),
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          "assets/delete.svg",
+                          "assets/support.svg",
                           height: 22,
                           width: 22,
                         ),
                         const SizedBox(width: 20),
-                        const Text("Delete Account",
+                        const Text("Support",
                             style: TextStyle(
                               fontFamily: "Overpass",
                               fontSize: 18,
@@ -236,11 +223,40 @@ class _SettingsPageState extends State<SettingsPage> {
                           Icons.arrow_forward_ios,
                         ),
                       ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+                    )),
+              ),
+              ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      minimumSize: Size(width, btnheight),
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                          side:
+                              const BorderSide(width: 0.4, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10))),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        "assets/delete.svg",
+                        height: 22,
+                        width: 22,
+                      ),
+                      const SizedBox(width: 20),
+                      const Text("Delete Account",
+                          style: TextStyle(
+                            fontFamily: "Overpass",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          )),
+                      const Spacer(),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                      ),
+                    ],
+                  )),
+            ],
           ),
         ),
       ),
@@ -252,7 +268,7 @@ class _SettingsPageState extends State<SettingsPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              fixedSize: Size(width, 48)),
+              fixedSize: Size(width, btnheight)),
           onPressed: () async => EmailAuth().logout(context: context),
           icon: SvgPicture.asset("assets/logout.svg"),
           label: const Text(
