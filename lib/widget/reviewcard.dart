@@ -16,55 +16,60 @@ class ReviewCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
+          borderRadius: BorderRadius.circular(10),
+          side: const BorderSide(width: 0.2, color: Colors.grey)),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                const SizedBox(width: 10),
-                const CircleAvatar(
-                  backgroundImage: AssetImage("assets/avatar.png"),
-                  radius: 25,
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      name,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      address,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(135, 10, 0, 10),
-                  child: Image.asset("assets/review.png", height: 25),
-                ),
-              ],
-            ),
             Padding(
-              padding: const EdgeInsets.only(top: 20, bottom: 5),
-              child: Text(
-                review,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    backgroundImage: AssetImage("assets/avatar.png"),
+                    radius: 25,
+                  ),
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(height: 5),
+                      SizedBox(
+                        width: 225,
+                        child: Text(
+                          address,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Image.asset("assets/review.png", height: 25),
+                ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.only(left: 10, top: 20, bottom: 0),
+              child: Text(
+                review,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
               child: RatingBar.builder(
                 initialRating: starCount.toDouble(),
                 minRating: 1,
@@ -81,7 +86,6 @@ class ReviewCards extends StatelessWidget {
                 onRatingUpdate: (rating) {},
               ),
             ),
-            const SizedBox(height: 5),
             Text(
               date,
               style: const TextStyle(
