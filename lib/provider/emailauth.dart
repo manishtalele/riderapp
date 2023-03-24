@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:riderapp/screens/homescreen.dart';
-import 'package:riderapp/login.dart';
+import 'package:riderapp/screens/login.dart';
 
 class EmailAuth {
   FirebaseAuth auth = FirebaseAuth.instance;

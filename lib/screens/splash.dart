@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:riderapp/screens/homescreen.dart';
-import 'package:riderapp/login.dart';
+import 'package:riderapp/screens/login.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);

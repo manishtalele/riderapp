@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:riderapp/provider/emailauth.dart';
-import 'package:riderapp/registration.dart';
+import 'package:riderapp/screens/registration.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 class LoginScreen extends StatefulWidget {

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/theme/deftheme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ActiveDonationPage extends StatefulWidget {
   final PendingDonationModel orderDetails;
@@ -117,7 +118,14 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    Uri phoneno = Uri.parse('tel:+97798345348734');
+                    if (await launchUrl(phoneno)) {
+                      //dialer opened
+                    } else {
+                      //dailer is not opened
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                       elevation: 0,
                       shape: RoundedRectangleBorder(

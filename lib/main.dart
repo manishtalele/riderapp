@@ -9,7 +9,7 @@ import 'package:riderapp/api/getuserdetails_api.dart';
 import 'package:riderapp/firebase_options.dart';
 import 'package:riderapp/provider/emailauth.dart';
 import 'package:riderapp/provider/notifcationprovider.dart';
-import 'package:riderapp/splash.dart';
+import 'package:riderapp/screens/splash.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
 Future<void> main() async {
@@ -53,15 +53,15 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       builder: (context, widget) => ResponsiveWrapper.builder(
-            ClampingScrollWrapper.builder(context, widget!),
-            breakpoints: const [
-              ResponsiveBreakpoint.resize(350, name: MOBILE),
-              ResponsiveBreakpoint.autoScale(600, name: TABLET),
-              ResponsiveBreakpoint.resize(800, name: DESKTOP),
-              ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
-            ],
-          ),
+      builder: (context, widget) => ResponsiveWrapper.builder(
+        ClampingScrollWrapper.builder(context, widget!),
+        breakpoints: const [
+          ResponsiveBreakpoint.resize(350, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(600, name: TABLET),
+          ResponsiveBreakpoint.resize(800, name: DESKTOP),
+          ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+        ],
+      ),
       title: 'Freemorsel Rider',
       theme: ThemeData(
           primaryColor: primaryColor,

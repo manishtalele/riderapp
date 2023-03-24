@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/theme/deftheme.dart';
-import 'package:riderapp/orderinfo.dart';
+import 'package:riderapp/screens/orderinfo.dart';
 
 class UpcomingCard extends StatelessWidget {
   final PendingDonationModel upcomingdonation;

@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:riderapp/api/getdonationdata.dart';
 import 'package:riderapp/api/getreviewapi.dart';
+import 'package:riderapp/model/hotelmodel.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/widget/activecard.dart';
 import 'package:riderapp/screens/settings.dart';
+import 'package:riderapp/widget/hotelcard.dart';
 import 'package:riderapp/widget/reviewcard.dart';
 import 'package:riderapp/widget/upcomingcar.dart';
 
 ValueNotifier<List> pendingDonation = ValueNotifier<List>([]);
+ValueNotifier<List> hotelsList = ValueNotifier<List>([]);
 ValueNotifier<String> activedonation = ValueNotifier<String>("");
 
 Future getActiveDonation() async {
@@ -29,7 +32,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool loader = true, reviewloader = true;
+  bool loader = true, reviewloader = true, hotelLoader = true;
   List reviewData = [];
   Future callApi() async {
     setState(() {
@@ -39,11 +42,17 @@ class _HomeScreenState extends State<HomeScreen> {
     pendingDonation.value = List.from(pendingDonation.value)..clear();
     pendingDonation.value = List.from(pendingDonation.value)
       ..addAll(await getDonationCards());
+    hotelsList.value = List.from(hotelsList.value)..clear();
+    hotelsList.value = List.from(hotelsList.value)
+      ..addAll(await getHotelList());
     await getActiveDonation();
     reviewData = await getReviewData();
     setState(() {
       if (pendingDonation.value.isNotEmpty) {
         loader = false;
+      }
+      if (hotelsList.value.isNotEmpty) {
+        hotelLoader = false;
       }
       if (reviewData.isNotEmpty) {
         reviewloader = false;
@@ -63,10 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
     double width = MediaQuery.of(context).size.width;
     return RefreshIndicator(
       onRefresh: (() async {
-        setState(() {
-          loader = true;
-          reviewloader = true;
-        });
         await callApi();
       }),
       child: Scaffold(
@@ -162,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 15,
                         ),
                         Text(
-                          "20",
+                          "5",
                           style: TextStyle(
                               fontSize: 36,
                               fontWeight: FontWeight.w400,
@@ -211,6 +216,43 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: UpcomingCard(
                                   upcomingdonation: postdata,
                                   stateUpdate: () => setState(() {}),
+                                ));
+                          } else {
+                            return const Text("No Orders Yet!");
+                          }
+                        }),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  "Your today's Hotel Pickups",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                ),
+                const SizedBox(height: 10),
+                Center(
+                  child: ValueListenableBuilder(
+                    valueListenable: hotelsList,
+                    builder: (contect, value, child) => ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemCount: value.isEmpty ? 1 : value.length,
+                        itemBuilder: (context, index) {
+                          if (value.isNotEmpty ||
+                              hotelLoader == false ||
+                              value.isNotEmpty) {
+                            HotelModel hoteldata =
+                                HotelModel.fromMap(value[index]);
+                            return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5),
+                                child: HotelCard(
+                                  address: hoteldata.address.toString(),
+                                  image: hoteldata.image.toString(),
+                                  name: hoteldata.name.toString(),
+                                  time:
+                                      "${hoteldata.time.hour}:${hoteldata.time.minute}",
+                                  weight: hoteldata.weight,
+                                  hoteldata: hoteldata,
                                 ));
                           } else {
                             return const Text("No Orders Yet!");

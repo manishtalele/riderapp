@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:riderapp/activedonationpage.dart';
+import 'package:riderapp/screens/activedonationpage.dart';
 import 'package:riderapp/screens/homescreen.dart';
 import 'package:riderapp/model/pendingordermodel.dart';
 import 'package:riderapp/theme/deftheme.dart';
@@ -44,6 +44,7 @@ class _ActiveCardState extends State<ActiveCard> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -67,35 +68,37 @@ class _ActiveCardState extends State<ActiveCard> {
                 : Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Order ID:\n${widget.orderid}",
-                              style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white)),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text("${orderDetails.name}\n${orderDetails.address}",
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              )),
-                          // const Spacer(),
-                          Center(
-                            child: Container(
+                      SizedBox(
+                        width: width - 240,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Order ID:\n${widget.orderid}",
+                                style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white)),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                                "${orderDetails.name}\n${orderDetails.address}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                )),
+                            // const Spacer(),
+                            Container(
                                 padding: const EdgeInsets.all(10),
                                 margin: const EdgeInsets.only(top: 20),
                                 decoration: BoxDecoration(
                                     color: primary2Color,
                                     borderRadius: BorderRadius.circular(6)),
                                 child: const Text('Active')),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       const Spacer(),
                       Padding(
