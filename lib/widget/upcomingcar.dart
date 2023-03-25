@@ -13,7 +13,7 @@ class UpcomingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String formmatingdate = DateFormat.yMMMMd().format(DateTime.now());
-
+    double width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () => Navigator.push(
           context,
@@ -45,18 +45,23 @@ class UpcomingCard extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(
-                          formmatingdate,
-                          style: const TextStyle(
+                        SizedBox(
+                          width: width - 110,
+                          child: Text(
+                            formmatingdate +
+                                upcomingdonation.address.toString(),
+                            overflow: TextOverflow.clip,
+                            style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
-                              color: Color.fromRGBO(00, 00, 00, 0.61)),
+                            ),
+                          ),
                         ),
-                        Text(
-                          upcomingdonation.address.toString(),
-                          style: const TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w400),
-                        ),
+                        // Text(
+                        //   upcomingdonation.address.toString(),
+                        //   style: const TextStyle(
+                        //       fontSize: 12, fontWeight: FontWeight.w400),
+                        // ),
                       ],
                     ),
                   ],

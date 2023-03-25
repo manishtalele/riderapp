@@ -156,6 +156,7 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
                   'Address:',
@@ -164,12 +165,16 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
                 const SizedBox(
                   width: 5,
                 ),
-                Text(
-                  widget.upcomingdonation.address.toString(),
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                      color: primary4Color),
+                SizedBox(
+                  width: width - 130,
+                  child: Text(
+                    widget.upcomingdonation.address.toString(),
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: primary4Color),
+                  ),
                 ),
               ],
             ),
@@ -180,7 +185,6 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
           padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
           child: ElevatedButton(
               onPressed: () async {
-                
                 bool check = await FirebaseFirestore.instance
                     .collection("Rider")
                     .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -188,7 +192,6 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
                     .then((value) => value.data()!["Active"] == "");
 
                 if (check) {
-                  
                   await FirebaseFirestore.instance
                       .collection("Rider")
                       .doc(FirebaseAuth.instance.currentUser!.uid)
