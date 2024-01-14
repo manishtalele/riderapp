@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'package:riderapp/theme/decoration.dart';
 import 'package:riderapp/theme/deftheme.dart';
 
@@ -43,48 +42,6 @@ class _NotificationSettingState extends State<NotificationSetting> {
   bool smsnoftification = true;
   @override
   Widget build(BuildContext context) {
-    double btnheight = ResponsiveValue(
-      context,
-      defaultValue: 50.0,
-      valueWhen: const [
-        Condition.smallerThan(
-          name: MOBILE,
-          value: 30.0,
-        ),
-        Condition.largerThan(
-          name: TABLET,
-          value: 75.0,
-        )
-      ],
-    ).value as double;
-    double btnwidth = ResponsiveValue(
-      context,
-      defaultValue: 320.0,
-      valueWhen: const [
-        Condition.smallerThan(
-          name: MOBILE,
-          value: 250.0,
-        ),
-        Condition.largerThan(
-          name: TABLET,
-          value: 500.0,
-        )
-      ],
-    ).value as double;
-    double? fontsize16 = ResponsiveValue(
-      context,
-      defaultValue: 16.0,
-      valueWhen: [
-        const Condition.smallerThan(
-          name: MOBILE,
-          value: 12.0,
-        ),
-        const Condition.largerThan(
-          name: TABLET,
-          value: 30.0,
-        )
-      ],
-    ).value;
     checkfun();
     return Scaffold(
         backgroundColor: Colors.white,

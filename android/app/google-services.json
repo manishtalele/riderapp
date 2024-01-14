@@ -8,12 +8,36 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:152014926712:android:cabf77df5f72f58ed28e8d",
+        "mobilesdk_app_id": "1:152014926712:android:dfe3d597e7b8281cd28e8d",
         "android_client_info": {
-          "package_name": "com.example.freemorsel"
+          "package_name": "com.example.riderapp"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "152014926712-45qe2kresep1cr912qae6nk790uga5gg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.riderapp",
+            "certificate_hash": "de8806526d44da3925ca560b4c5c04c497078224"
+          }
+        },
+        {
+          "client_id": "152014926712-fg15cdd89143ud5dagtd93qnviroergh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.riderapp",
+            "certificate_hash": "227dfdfbc4d1bcafeba7b4a79c2c556a99196d0a"
+          }
+        },
+        {
+          "client_id": "152014926712-n2et7meqdi0nrcias6cdttju3seml5o3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.riderapp",
+            "certificate_hash": "8cf7d14b463f3fb37c4ba6c908f65c3ed8d422d6"
+          }
+        },
         {
           "client_id": "152014926712-nqcgi3m9epuooedq07e3tnjinm7620i2.apps.googleusercontent.com",
           "client_type": 3
@@ -44,12 +68,68 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:152014926712:android:dfe3d597e7b8281cd28e8d",
+        "mobilesdk_app_id": "1:152014926712:android:d8926e811c10786fd28e8d",
         "android_client_info": {
-          "package_name": "com.example.riderapp"
+          "package_name": "com.freemorsel.app"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "152014926712-3dfun6k7gtd5dj22g6sskt8nb5qn56dk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freemorsel.app",
+            "certificate_hash": "8cf7d14b463f3fb37c4ba6c908f65c3ed8d422d6"
+          }
+        },
+        {
+          "client_id": "152014926712-kfn3pv8mivr7m7ki5rla3qcilrm7aplj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freemorsel.app",
+            "certificate_hash": "1f7348317d440d7bdcfca77da754badd47ec2955"
+          }
+        },
+        {
+          "client_id": "152014926712-kjmbor4q1jceo0ud12sik3e0ijdgdvp3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freemorsel.app",
+            "certificate_hash": "527a6281a397c126ae3a077eb316501763c44d49"
+          }
+        },
+        {
+          "client_id": "152014926712-l0m66jagl7kpqsq307si9mgp1p6jhb3c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freemorsel.app",
+            "certificate_hash": "965445991858b8267e1c1439437db9c99fc9cc91"
+          }
+        },
+        {
+          "client_id": "152014926712-m5us3enbfh4dqrkfp9ncqqectfgtffsj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freemorsel.app",
+            "certificate_hash": "227dfdfbc4d1bcafeba7b4a79c2c556a99196d0a"
+          }
+        },
+        {
+          "client_id": "152014926712-rfcrdillb24dm0hfkfp80uebqngcvsem.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freemorsel.app",
+            "certificate_hash": "de8806526d44da3925ca560b4c5c04c497078224"
+          }
+        },
+        {
+          "client_id": "152014926712-sg3obfjggeml19i5ha1fmk3jnjn1tsjf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freemorsel.app",
+            "certificate_hash": "d5c08b43d63f031559b9be0726349d21c0faddc0"
+          }
+        },
         {
           "client_id": "152014926712-nqcgi3m9epuooedq07e3tnjinm7620i2.apps.googleusercontent.com",
           "client_type": 3

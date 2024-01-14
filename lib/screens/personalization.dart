@@ -16,7 +16,6 @@ class PersonalizationPage extends StatefulWidget {
 class _PersonalizationPageState extends State<PersonalizationPage> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

@@ -16,7 +16,6 @@ class ReviewCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),

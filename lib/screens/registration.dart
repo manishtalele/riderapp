@@ -444,28 +444,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       minimumSize: Size(width, btnheight)),
                   onPressed: () async {
                     try {
-                      if (_password.text == _confirmPass.text) {
-                        await setDetails();
-                        await EmailAuth()
-                            .createUserWithEmailAndPassword(
-                                emailAddress: _email.text,
-                                password: _password.text)
-                            .then((value) async => await UserDetails()
-                                .createUser(context: context));
-                      } else {
+                      if (_password.text != _confirmPass.text) {
                         Fluttertoast.showToast(
                             msg: "Please Enter Proper Password",
                             toastLength: Toast.LENGTH_LONG,
                             fontSize: 20,
                             backgroundColor: Theme.of(context).primaryColor,
                             textColor: Colors.white);
+                        return;
                       }
+                      await setDetails();
+                      await EmailAuth()
+                          .createUserWithEmailAndPassword(
+                              emailAddress: _email.text,
+                              password: _password.text)
+                          .then((value) async =>
+                              await UserDetails().createUser(context: context));
                     } catch (e) {
                       Fluttertoast.showToast(
                           msg: "Something Went Wrong",
                           toastLength: Toast.LENGTH_LONG,
                           fontSize: 20,
-                          backgroundColor: Theme.of(context).primaryColor,
+                          backgroundColor: primaryColor,
                           textColor: Colors.white);
                       if (kDebugMode) {
                         print(e);

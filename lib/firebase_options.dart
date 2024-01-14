@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -70,17 +73,7 @@ class DefaultFirebaseOptions {
     projectId: 'freemorsel-2ea41',
     databaseURL: 'https://freemorsel-2ea41-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'freemorsel-2ea41.appspot.com',
-    iosClientId: '152014926712-p7v4lgan2q7e3pct7f1b6q0246jr80a8.apps.googleusercontent.com',
-    iosBundleId: 'com.example.riderapp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC4d3nu_PwDmNnpv_mlNtVrpDr59BJHWso',
-    appId: '1:152014926712:ios:63d105b3b6527963d28e8d',
-    messagingSenderId: '152014926712',
-    projectId: 'freemorsel-2ea41',
-    databaseURL: 'https://freemorsel-2ea41-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'freemorsel-2ea41.appspot.com',
+    androidClientId: '152014926712-3dfun6k7gtd5dj22g6sskt8nb5qn56dk.apps.googleusercontent.com',
     iosClientId: '152014926712-p7v4lgan2q7e3pct7f1b6q0246jr80a8.apps.googleusercontent.com',
     iosBundleId: 'com.example.riderapp',
   );

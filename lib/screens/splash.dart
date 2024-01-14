@@ -7,7 +7,7 @@ import 'package:riderapp/screens/homescreen.dart';
 import 'package:riderapp/screens/login.dart';
 
 class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+  const Splash({super.key});
 
   @override
   State<Splash> createState() => _SplashState();
@@ -17,7 +17,6 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
-    double width = MediaQuery.of(context).size.width;
     return AnimatedSplashScreen(
       duration: 1500,
       splash: SvgPicture.asset(

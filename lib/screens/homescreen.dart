@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       width: width / 2.4,
-                      child: Column(children: const [
+                      child: const Column(children: [
                         Text(
                           "Pickups",
                           style: TextStyle(
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       width: width / 2.4,
-                      child: Column(children: const [
+                      child: const Column(children: [
                         Text(
                           "Delay",
                           style: TextStyle(

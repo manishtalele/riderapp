@@ -16,7 +16,6 @@ class _UpdateLicenseDetailsState extends State<UpdateLicenseDetails> {
   final TextEditingController _licenseAuthority = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

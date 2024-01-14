@@ -11,7 +11,7 @@ List foodDataList = [
     'subtitle': 'Rohit Sharma',
     'distance': '2 km away',
     'image': 'assets/Tiffin1.jpeg',
-    'points':"107"
+    'points': "107"
   },
   {
     'srno': '2.',
@@ -19,7 +19,7 @@ List foodDataList = [
     'subtitle': 'Virat Kohli',
     'distance': '2 km away',
     "image": 'assets/Tiffin2.jpeg',
-    'points':"104"
+    'points': "104"
   },
   {
     'srno': '3.',
@@ -27,7 +27,7 @@ List foodDataList = [
     'subtitle': 'Jasprit Bumrah',
     'distance': '2 km away',
     "image": 'assets/Tiffin3.jpeg',
-    'points':"100"
+    'points': "100"
   },
   {
     'srno': '4.',
@@ -35,7 +35,7 @@ List foodDataList = [
     "subtitle": 'KL Rahul',
     'distance': '2 km away',
     "image": 'assets/Tiffin1.jpeg',
-    'points':"96"
+    'points': "96"
   },
   {
     'srno': '5.',
@@ -43,34 +43,34 @@ List foodDataList = [
     "subtitle": 'Rishab Pant',
     'distance': '2 km away',
     "image": 'assets/Tiffin2.jpeg',
-    'points':"65"
+    'points': "65"
   },
   {
     "title": 'Chicken',
     "subtitle": 'Hardik Pandya ',
     'distance': '2 km away',
     "image": 'assets/Tiffin3.jpeg',
-    'points':"90"
+    'points': "90"
   },
   {
     "title": 'Egg Masala',
     "subtitle": 'Yuzvendra',
     'distance': '2 km away',
     "image": 'assets/Tiffin1.jpeg',
-    'points':"70"
+    'points': "70"
   },
   {
     "title": 'Paneer Masala',
     "subtitle": 'Ravindra Jadeja',
     'distance': '2 km away',
     "image": 'assets/Tiffin2.jpeg',
-    'points':"85"
+    'points': "85"
   },
   {
     "title": 'Bhaji Chapati',
     "subtitle": 'Bhuvneshwar',
     'distance': '2 km away',
     "image": 'assets/Tiffin3.jpeg',
-    'points':"83"
+    'points': "83"
   }
 ];

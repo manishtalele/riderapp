@@ -13,7 +13,6 @@ class Support extends StatefulWidget {
 class _SupportState extends State<Support> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
