@@ -39,26 +39,26 @@ class EmailAuth {
       {required String emailAddress,
       required String password,
       required BuildContext context}) async {
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: emailAddress, password: password)
-        .then((value) => {
-              log(value.user.toString()),
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                  (route) => false)
-            })
-        .catchError((e) {
-      if (e.code == 'user-not-found') {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: emailAddress, password: password)
+          .then((value) => {
+                log(value.user.toString()),
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    (route) => false)
+              });
+    } catch (e) {
+      if (e == 'user-not-found') {
         if (kDebugMode) {
           print('No user found for that email.');
         }
-      } else if (e.code == 'wrong-password') {
+      } else if (e == 'wrong-password') {
         if (kDebugMode) {
           print('Wrong password provided for that user.');
         }
       }
-      return e;
-    });
+    }
   }
 
   logout({required BuildContext context}) {

@@ -197,12 +197,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   MaterialPageRoute(
                       builder: (context) => const RegisterScreen()));
             },
-            child: Text(
-              "Don't have an account? Sign Up",
-              style: TextStyle(
-                fontSize: fontsize16,
-                fontWeight: FontWeight.w400,
-                color: Colors.grey,
+            child: RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                    text: "Don't have an account? ",
+                    style: TextStyle(
+                      fontSize: fontsize16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  TextSpan(
+                    text: "Sign Up",
+                    style: TextStyle(
+                      fontSize: fontsize16,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

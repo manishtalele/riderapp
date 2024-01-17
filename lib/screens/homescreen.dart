@@ -205,21 +205,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         physics: const ScrollPhysics(),
                         itemCount: value.isEmpty ? 1 : value.length,
                         itemBuilder: (context, index) {
-                          if (value.isNotEmpty ||
-                              loader == false ||
-                              value.isNotEmpty) {
-                            PendingDonationModel postdata =
-                                PendingDonationModel.from(value[index]);
-                            return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5),
-                                child: UpcomingCard(
-                                  upcomingdonation: postdata,
-                                  stateUpdate: () => setState(() {}),
-                                ));
-                          } else {
+                          if (hotelLoader) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          if (value.isEmpty && hotelLoader == false) {
                             return const Text("No Orders Yet!");
                           }
+
+                          PendingDonationModel postdata =
+                              PendingDonationModel.from(value[index]);
+                          return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: UpcomingCard(
+                                upcomingdonation: postdata,
+                                stateUpdate: () => setState(() {}),
+                              ));
                         }),
                   ),
                 ),
@@ -237,26 +240,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         physics: const ScrollPhysics(),
                         itemCount: value.isEmpty ? 1 : value.length,
                         itemBuilder: (context, index) {
-                          if (value.isNotEmpty ||
-                              hotelLoader == false ||
-                              value.isNotEmpty) {
-                            HotelModel hoteldata =
-                                HotelModel.fromMap(value[index]);
-                            return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5),
-                                child: HotelCard(
-                                  address: hoteldata.address.toString(),
-                                  image: hoteldata.image.toString(),
-                                  name: hoteldata.name.toString(),
-                                  time:
-                                      "${hoteldata.time.hour}:${hoteldata.time.minute}",
-                                  weight: hoteldata.weight,
-                                  hoteldata: hoteldata,
-                                ));
-                          } else {
+                          if (hotelLoader) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          if (value.isEmpty && hotelLoader == false) {
                             return const Text("No Orders Yet!");
                           }
+                          HotelModel hoteldata =
+                              HotelModel.fromMap(value[index]);
+                          return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: HotelCard(
+                                address: hoteldata.address.toString(),
+                                image: hoteldata.image.toString(),
+                                name: hoteldata.name.toString(),
+                                time:
+                                    "${hoteldata.time.hour}:${hoteldata.time.minute}",
+                                weight: hoteldata.weight,
+                                hoteldata: hoteldata,
+                              ));
                         }),
                   ),
                 ),
@@ -271,19 +276,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     physics: const ScrollPhysics(),
                     itemCount: reviewData.isEmpty ? 1 : reviewData.length,
                     itemBuilder: (context, index) {
-                      if (reviewData.isNotEmpty ||
-                          loader == false ||
-                          reviewData.isNotEmpty) {
-                        return ReviewCards(
-                          address: reviewData[index]["address"],
-                          date: reviewData[index]["time"],
-                          name: reviewData[index]["name"],
-                          review: reviewData[index]["review"],
-                          starCount: reviewData[index]["starcount"],
+                      if (loader) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
                         );
-                      } else {
+                      }
+
+                      if (reviewData.isEmpty && loader == false) {
                         return const Text("No Reviews Yet");
                       }
+
+                      return ReviewCards(
+                        address: reviewData[index]["address"],
+                        date: reviewData[index]["time"],
+                        name: reviewData[index]["name"],
+                        review: reviewData[index]["review"],
+                        starCount: reviewData[index]["starcount"],
+                      );
                     }),
                 const SizedBox(height: 10),
               ],

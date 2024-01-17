@@ -16,6 +16,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -63,12 +64,14 @@ class _MainState extends State<Main> {
       ),
       title: 'Freemorsel Rider',
       theme: ThemeData(
-          primaryColor: primaryColor,
-          secondaryHeaderColor: primary2Color,
-          primarySwatch: Colors.blueGrey,
-          scaffoldBackgroundColor: Colors.white,
-          appBarTheme: AppBarTheme(
-              backgroundColor: Colors.white, foregroundColor: primaryColor)),
+        primaryColor: primaryColor,
+        useMaterial3: false,
+        secondaryHeaderColor: primary2Color,
+        primarySwatch: Colors.blueGrey,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white, foregroundColor: primaryColor),
+      ),
       home: const Splash(),
     );
   }

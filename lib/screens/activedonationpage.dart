@@ -223,6 +223,7 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
                     'Address:',
@@ -231,12 +232,17 @@ class _ActiveDonationPageState extends State<ActiveDonationPage> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                    widget.orderDetails.address.toString(),
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        color: primary4Color),
+                  SizedBox(
+                    width: width - 150,
+                    child: Text(
+                      widget.orderDetails.address.toString(),
+
+                      // overflow: TextOverflow.clip,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: primary4Color),
+                    ),
                   ),
                 ],
               ),

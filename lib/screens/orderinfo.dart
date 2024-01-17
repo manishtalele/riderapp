@@ -166,12 +166,12 @@ class _OrderInfoScreenState extends State<OrderInfoScreen> {
                   width: 5,
                 ),
                 SizedBox(
-                  width: width - 130,
+                  width: width - 150,
                   child: Text(
                     widget.upcomingdonation.address.toString(),
-                    overflow: TextOverflow.clip,
+                    // overflow: TextOverflow.clip,
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.w400,
                         color: primary4Color),
                   ),
